@@ -172,20 +172,20 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem 3rem;
-  max-width: 600px;
+  max-width: 800px;
   margin: 2rem auto 0 auto;
   padding: 0;
   font-size: 1.1rem;
 }
 .contact-list li {
-  background: #f5f7fa;
+  background: #e9eff8;
   border-radius: 0.7rem;
   box-shadow: 0 2px 8px rgba(26,41,128,0.07);
   padding: 1.1rem 1.7rem;
-  min-width: 220px;
+  /* min-width: 220px; */
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
   margin-bottom: 0;
   color: #1a2980;
   transition: box-shadow 0.2s, transform 0.2s;
