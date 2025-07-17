@@ -43,6 +43,7 @@ AOS.init({
     duration: 900,
     once: true
   });
+  
   // Typed.js for hero subtitle
   document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('typed-roles')) {
