@@ -98,6 +98,28 @@ body {
   background: #fff;
   padding: 3rem 0;
 }
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(26,41,128,0.10);
+  border: 4px solid #26d0ce;
+}
+
+.about-text {
+  flex: 1;
+}
 .about h2 {
   color: #1a2980;
   margin-bottom: 1rem;
