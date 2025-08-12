@@ -40,26 +40,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 AOS.init({
-    duration: 900,
-    once: true
-  });
-  
-  // Typed.js for hero subtitle
-  document.addEventListener('DOMContentLoaded', function () {
-    if (document.getElementById('typed-roles')) {
-      new Typed('#typed-roles', {
-        strings: [
-          'AI Automation Enthusiast',
-          'Website Designer',
-          'Trader'
-        ],
-        typeSpeed: 60,
-        backSpeed: 35,
-        backDelay: 1200,
-        startDelay: 400,
-        loop: true,
-        showCursor: true,
-        cursorChar: '|',
-      });
-    }
-  });
+  duration: 900,
+  once: true
+});
+
+// Typed.js for hero subtitle
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('typed-roles')) {
+    new Typed('#typed-roles', {
+      strings: [
+        'AI Automation Enthusiast',
+        'Website Designer',
+        'Trader'
+      ],
+      typeSpeed: 60,
+      backSpeed: 35,
+      backDelay: 1200,
+      startDelay: 400,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    });
+  }
+});
