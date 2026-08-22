@@ -4,12 +4,17 @@ import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL;
+
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [honey, setHoney] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -17,17 +22,65 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
 
-    setIsSubmitted(true);
-    confetti({
-      particleCount: 50,
-      spread: 45,
-      origin: { y: 0.8 },
-      colors: ['#E8DEC8', '#DCD0B8', '#ECE5DA', '#777571']
-    });
+    // Honeypot filled -> almost certainly a bot. Pretend success and bail out.
+    if (honey) {
+      setIsSubmitted(true);
+      return;
+    }
+
+    if (!CONTACT_EMAIL) {
+      setSubmitError('The contact inbox is not configured yet. Please use the email address on the left.');
+      return;
+    }
+
+    setIsSending(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `Portfolio inquiry from ${name}`,
+          _template: 'table',
+          _captcha: 'false',
+          _honey: honey,
+          _autoresponse: `Hi ${name}, thank you for reaching out through my portfolio. I have received your message and will reply to ${email} shortly. — Samson`
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || result.success !== 'true') {
+        throw new Error(result.message || 'Unable to send your message right now.');
+      }
+
+      setIsSubmitted(true);
+      confetti({
+        particleCount: 50,
+        spread: 45,
+        origin: { y: 0.8 },
+        colors: ['#E8DEC8', '#DCD0B8', '#ECE5DA', '#777571']
+      });
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error && error.message
+          ? `${error.message} Please try again in a moment.`
+          : 'Something went wrong while sending. Please try again.'
+      );
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -105,6 +158,8 @@ export const ContactSection: React.FC = () => {
                     setName('');
                     setEmail('');
                     setMessage('');
+                    setHoney('');
+                    setSubmitError(null);
                   }}
                   className="text-xs font-mono text-[#E8DEC8] hover:underline cursor-pointer pt-2 block mx-auto"
                 >
@@ -113,6 +168,20 @@ export const ContactSection: React.FC = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot spam trap - invisible to humans, tempting for bots */}
+                <div className="hidden" aria-hidden="true">
+                  <label>
+                    Leave this field empty
+                    <input
+                      type="text"
+                      value={honey}
+                      onChange={(e) => setHoney(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </label>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="block text-[10px] font-mono uppercase tracking-widest text-[#55524E]">
@@ -156,13 +225,25 @@ export const ContactSection: React.FC = () => {
                   />
                 </div>
 
+                {submitError && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    role="alert"
+                    className="text-xs font-mono text-red-400/90 leading-relaxed"
+                  >
+                    [!] {submitError}
+                  </motion.p>
+                )}
+
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: isSending ? 1 : 1.02 }}
+                  whileTap={{ scale: isSending ? 1 : 0.98 }}
                   type="submit"
-                  className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-6 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all cursor-pointer shadow-xs"
+                  disabled={isSending}
+                  className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] disabled:hover:bg-[#E8DEC8] px-6 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSending ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </form>
             )}

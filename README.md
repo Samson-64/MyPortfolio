@@ -28,7 +28,7 @@ The site presents services, selected project case studies, background and experi
 - **Services** — three service cards with blur-in stagger animation.
 - **Selected Work** — project cards that open an **interactive case study modal** (problem, role, architecture, code snippet with copy button, tech chips, live/GitHub links).
 - **About** — bio, core skills matrix, and experience timeline.
-- **Contact** — copy-email-to-clipboard button, social links, and a validated form with a confetti celebration on submit.
+- **Contact** — copy-email-to-clipboard button, social links, and a validated form that really sends messages to your inbox via FormSubmit.co (with honeypot spam protection and a confetti celebration on success).
 - **Resume modal** — printable CV view plus a plain-text `.txt` download generated on the fly.
 - **Back to top** — floating button that appears after scrolling past the hero.
 
@@ -54,7 +54,23 @@ npm run dev
 
 The site opens at `http://localhost:3000`.
 
-> No environment variables are required — all content is static data inside the repo.
+> One optional environment variable (`VITE_CONTACT_EMAIL`) powers the contact form — see [Contact Form Setup](#contact-form-setup). Everything else is static data inside the repo.
+
+---
+
+## Contact Form Setup
+
+Contact messages are delivered straight to your inbox via [FormSubmit.co](https://formsubmit.co) — no account or API key needed.
+
+1. Set your destination address in `.env.local` (copy from `.env.example`):
+
+   ```bash
+   VITE_CONTACT_EMAIL=you@example.com
+   ```
+
+2. Run the site, fill in the contact form, and send once.
+3. FormSubmit emails an **activation link** to that address — click it one time.
+4. Done. Every message after that arrives immediately, formatted as a table, with an automatic thank-you reply sent to the visitor.
 
 ---
 
