@@ -268,8 +268,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const EDUCATION: Education[] = [
   {
-    degree: 'B.Sc. in Computer Science',
-    institution: 'University of Dar es Salaam',
+    degree: 'B.Cs. in Computer Science',
+    institution: 'Institute of Finance Management (IFM)',
     location: 'Dar es Salaam, Tanzania',
     period: '2016 — 2020',
     highlights: [
