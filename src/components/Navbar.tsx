@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
             </button>
 
             {/* Centered Navigation Links */}
-            <nav className="hidden md:flex items-center gap-8 text-[11px] font-medium tracking-widest text-[#7C7A76]">
+            <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-widest text-[#7C7A76]">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -79,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
               <button
                 id="nav-resume-btn"
                 onClick={onOpenResume}
-                className="text-[11px] font-mono text-[#8C8984] hover:text-[#ECE5DA] transition-colors cursor-pointer px-2 py-1"
+                className="text-[13px] font-mono text-[#8C8984] hover:text-[#ECE5DA] transition-colors cursor-pointer px-2 py-1"
               >
                 CV
               </button>
@@ -87,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
               <button
                 id="nav-contact-cta-btn"
                 onClick={() => handleItemClick('contact')}
-                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] text-[11px] font-medium tracking-wider uppercase px-4 py-1.5 rounded-full transition-all cursor-pointer shadow-xs"
+                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] text-[13px] font-medium tracking-wider uppercase px-4 py-1.5 rounded-full transition-all cursor-pointer shadow-xs"
               >
                 Let's Talk
               </button>
@@ -125,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                   key={item.id}
                   id={`mobile-nav-${item.id}`}
                   onClick={() => handleItemClick(item.id)}
-                  className={`py-2 text-xs font-medium uppercase tracking-widest text-left transition-colors ${
+                  className={`py-2 text-sm font-medium uppercase tracking-widest text-left transition-colors ${
                     activeSection === item.id ? 'text-[#E8DEC8]' : 'text-[#7C7A76] hover:text-white'
                   }`}
                 >
@@ -138,13 +138,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                     setMobileMenuOpen(false);
                     onOpenResume();
                   }}
-                  className="text-xs font-mono text-[#8C8984] hover:text-white"
+                  className="text-sm font-mono text-[#8C8984] hover:text-white"
                 >
                   Resume / CV
                 </button>
                 <button
                   onClick={() => handleItemClick('contact')}
-                  className="bg-[#E8DEC8] text-[#080808] px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider"
+                  className="bg-[#E8DEC8] text-[#080808] px-4 py-1.5 rounded-full text-sm font-medium uppercase tracking-wider"
                 >
                   Let's Talk
                 </button>

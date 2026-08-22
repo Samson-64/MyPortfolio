@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="space-y-3"
         >
-          <h1 className="font-serif text-5xl sm:text-7xl lg:text-[76px] font-light text-[#E8E2D8] tracking-tight leading-[1.04]">
+          <h1 className="font-serif text-6xl sm:text-7xl lg:text-[84px] font-light text-[#E8E2D8] tracking-tight leading-[1.04]">
             Frontend Developer <br />
             <motion.span
               initial={{ opacity: 0, x: -10 }}
@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="max-w-md mx-auto text-xs sm:text-sm text-[#7D7A75] leading-relaxed pt-2 font-normal"
+            className="max-w-md mx-auto text-sm sm:text-base text-[#7D7A75] leading-relaxed pt-2 font-normal"
           >
             Specializing in high-performance React applications, clean TypeScript code, and refined user interfaces.
           </motion.p>
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <button
             id="hero-services-btn"
             onClick={() => onNavigate('services')}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/8 bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/20 text-[10px] font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515]"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/8 bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/20 text-xs font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515]"
           >
             <span>My Services</span>
             <motion.span
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           transition={{ duration: 0.7, delay: 0.55 }}
           className="w-full pt-16 mt-6 border-t border-white/4"
         >
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-xs font-mono tracking-widest text-[#504E4B] uppercase">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-sm font-mono tracking-widest text-[#504E4B] uppercase">
             {CLIENT_LOGOS.map((tech, idx) => (
               <motion.span
                 key={tech.name}

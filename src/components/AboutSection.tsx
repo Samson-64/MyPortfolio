@@ -22,18 +22,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
             About &amp; Background
           </h2>
 
-          <p className="text-sm text-[#8C8984] leading-relaxed font-normal">
+          <p className="text-base text-[#8C8984] leading-relaxed font-normal">
             I am a frontend developer and UI engineer based in Dar es Salaam, Tanzania. Over the past 4+ years, I have specialized in building modern React applications, crafting smooth component interactions with Tailwind CSS and Framer Motion, and integrating backend REST APIs.
           </p>
 
-          <p className="text-xs text-[#73706B] leading-relaxed font-normal">
+          <p className="text-sm text-[#73706B] leading-relaxed font-normal">
             My primary strength is in frontend architecture, user experience, and responsive design, while continually expanding my knowledge in Node.js and backend engineering fundamentals.
           </p>
 
           <div className="flex items-center gap-4 pt-2">
             <button
               onClick={onOpenResume}
-              className="text-xs font-mono tracking-wider uppercase text-[#E8DEC8] hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1 group"
+              className="text-sm font-mono tracking-wider uppercase text-[#E8DEC8] hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1 group"
             >
               <span>[ View Curriculum Vitae</span>
               <span className="group-hover:translate-x-1 transition-transform">→ ]</span>
@@ -51,11 +51,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
         >
           {/* Skills 2-Column Minimal List */}
           <div className="p-8 rounded-2xl bg-[#0C0C0C] border border-white/4 space-y-5 hover:border-white/10 transition-colors shadow-sm">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Core Stack &amp; Skills
             </span>
 
-            <div className="grid grid-cols-2 gap-6 text-xs">
+            <div className="grid grid-cols-2 gap-6 text-sm">
               <div>
                 <span className="font-medium text-[#E8E2D8] block mb-2 font-mono">Frontend (Core)</span>
                 <ul className="text-[#7A7773] space-y-1.5 font-normal">
@@ -79,7 +79,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
 
           {/* Recent Roles */}
           <div className="space-y-4">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Experience
             </span>
             <div className="space-y-3">
@@ -90,7 +90,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + idx * 0.08 }}
-                  className="flex items-baseline justify-between py-2 border-b border-white/3 text-xs hover:border-white/10 transition-colors group"
+                  className="flex items-baseline justify-between py-2 border-b border-white/3 text-sm hover:border-white/10 transition-colors group"
                 >
                   <div>
                     <span className="text-[#E8E2D8] font-medium group-hover:text-white transition-colors">{exp.role}</span>

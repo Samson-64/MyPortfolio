@@ -28,7 +28,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[10px] font-mono tracking-widest text-[#66635F] uppercase"
+          className="text-xs font-mono tracking-widest text-[#66635F] uppercase"
         >
           [ {PROJECTS.length} Case Studies ]
         </motion.span>
@@ -79,16 +79,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             {/* Bottom Bar */}
             <div className="p-6 flex items-center justify-between">
               <div>
-                <h3 className="font-sans text-base font-medium text-[#E8E2D8] group-hover:text-white transition-colors">
+                <h3 className="font-sans text-lg font-medium text-[#E8E2D8] group-hover:text-white transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-xs text-[#6E6B67] mt-0.5 font-normal">
+                <p className="text-sm text-[#6E6B67] mt-0.5 font-normal">
                   {project.tagline}
                 </p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#55524E] border border-white/6 px-2.5 py-1 rounded-full group-hover:border-[#E8DEC8]/30 group-hover:text-[#8C8984] transition-colors">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#55524E] border border-white/6 px-2.5 py-1 rounded-full group-hover:border-[#E8DEC8]/30 group-hover:text-[#8C8984] transition-colors">
                   {project.category}
                 </span>
                 <div className="w-7 h-7 rounded-full bg-white/3 group-hover:bg-[#E8DEC8] text-[#777] group-hover:text-black flex items-center justify-center transition-all duration-300 group-hover:scale-105">

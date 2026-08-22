@@ -81,20 +81,20 @@ ${EDUCATION.map(
       >
         {/* Modal Controls */}
         <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/4">
-          <div className="text-xs font-mono uppercase tracking-widest text-[#E8DEC8]">
+          <div className="text-sm font-mono uppercase tracking-widest text-[#E8DEC8]">
             Curriculum Vitae
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-3 py-1 rounded-full border border-white/8 text-xs font-mono text-[#8C8984] hover:text-white transition-colors cursor-pointer"
+              className="px-3 py-1 rounded-full border border-white/8 text-sm font-mono text-[#8C8984] hover:text-white transition-colors cursor-pointer"
             >
               Print
             </button>
             <button
               onClick={handleDownloadText}
-              className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-3 py-1 rounded-full text-xs font-mono uppercase transition-all cursor-pointer"
+              className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-3 py-1 rounded-full text-sm font-mono uppercase transition-all cursor-pointer"
             >
               Download
             </button>
@@ -114,29 +114,29 @@ ${EDUCATION.map(
             <h1 className="font-serif text-3xl font-light text-[#E8E2D8]">
               {PERSONAL_INFO.name}
             </h1>
-            <p className="text-xs font-mono text-[#8C8984]">
+            <p className="text-sm font-mono text-[#8C8984]">
               {PERSONAL_INFO.role} — {PERSONAL_INFO.location}
             </p>
-            <p className="text-xs text-[#7A7773] leading-relaxed pt-1">
+            <p className="text-sm text-[#7A7773] leading-relaxed pt-1">
               {PERSONAL_INFO.bio}
             </p>
           </div>
 
           {/* Core Technical Matrix */}
           <div className="space-y-3">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Skills Breakdown
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1">
                 <span className="font-medium text-[#E8E2D8] font-mono">Frontend (Advanced)</span>
-                <p className="text-[#7A7773] leading-relaxed text-[11px]">
+                <p className="text-[#7A7773] leading-relaxed text-[13px]">
                   React 19/18, TypeScript, Next.js, Tailwind CSS, Motion, Responsive Design, State Management.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1">
                 <span className="font-medium text-[#E8E2D8] font-mono">Backend &amp; APIs (Foundational)</span>
-                <p className="text-[#7A7773] leading-relaxed text-[11px]">
+                <p className="text-[#7A7773] leading-relaxed text-[13px]">
                   REST API Consumption, WebSockets, Node.js &amp; Express (Basics), Git, PostgreSQL (Learning).
                 </p>
               </div>
@@ -145,15 +145,15 @@ ${EDUCATION.map(
 
           {/* Work Experience */}
           <div className="space-y-4">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Experience
             </span>
             <div className="space-y-5">
               {WORK_EXPERIENCE.map((job) => (
-                <div key={job.id} className="space-y-1 text-xs">
+                <div key={job.id} className="space-y-1 text-sm">
                   <div className="flex justify-between items-baseline">
                     <span className="font-medium text-[#E8E2D8]">{job.role} — {job.company}</span>
-                    <span className="font-mono text-[#66635F] text-[11px]">{job.period}</span>
+                    <span className="font-mono text-[#66635F] text-[13px]">{job.period}</span>
                   </div>
                   <p className="text-[#8C8984] leading-relaxed">{job.description}</p>
                 </div>
@@ -163,16 +163,16 @@ ${EDUCATION.map(
 
           {/* Education */}
           <div className="space-y-3">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Education
             </span>
             {EDUCATION.map((edu, idx) => (
-              <div key={idx} className="space-y-0.5 text-xs">
+              <div key={idx} className="space-y-0.5 text-sm">
                 <div className="flex justify-between items-baseline">
                   <span className="text-[#E8E2D8]">{edu.degree}</span>
-                  <span className="font-mono text-[#66635F] text-[11px]">{edu.period}</span>
+                  <span className="font-mono text-[#66635F] text-[13px]">{edu.period}</span>
                 </div>
-                <div className="text-[#7A7773] text-[11px]">{edu.institution}</div>
+                <div className="text-[#7A7773] text-[13px]">{edu.institution}</div>
               </div>
             ))}
           </div>

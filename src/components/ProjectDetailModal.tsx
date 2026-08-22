@@ -40,10 +40,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
         {/* Modal Header */}
         <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/4">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#E8DEC8] border border-[#E8DEC8]/30 px-2.5 py-0.5 rounded-full">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#E8DEC8] border border-[#E8DEC8]/30 px-2.5 py-0.5 rounded-full">
               {project.category}
             </span>
-            <span className="text-xs text-[#66635F] font-mono">
+            <span className="text-sm text-[#66635F] font-mono">
               {project.year} • {project.clientOrOrg}
             </span>
           </div>
@@ -65,7 +65,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight">
               {project.title}
             </h2>
-            <p className="text-sm text-[#8C8984] font-normal leading-relaxed">
+            <p className="text-base text-[#8C8984] font-normal leading-relaxed">
               {project.tagline}
             </p>
           </div>
@@ -77,7 +77,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all flex items-center gap-1.5"
+                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-4 py-1.5 rounded-full text-sm font-medium tracking-wider uppercase transition-all flex items-center gap-1.5"
               >
                 <span>Live Project</span>
                 <ExternalLink className="w-3 h-3" />
@@ -88,7 +88,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-white/8 hover:border-white/20 px-4 py-1.5 rounded-full text-xs font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1.5"
+                className="border border-white/8 hover:border-white/20 px-4 py-1.5 rounded-full text-sm font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1.5"
               >
                 <Github className="w-3 h-3" />
                 <span>Source Repository</span>
@@ -110,18 +110,18 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           {/* Problem & Role Overview */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
                 The Problem
               </span>
-              <p className="text-xs text-[#8C8984] leading-relaxed">
+              <p className="text-sm text-[#8C8984] leading-relaxed">
                 {project.problem}
               </p>
             </div>
             <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
                 Architectural Role
               </span>
-              <p className="text-xs text-[#8C8984] leading-relaxed">
+              <p className="text-sm text-[#8C8984] leading-relaxed">
                 {project.role}
               </p>
             </div>
@@ -129,10 +129,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Architecture Strategy */}
           <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Strategy &amp; Execution
             </span>
-            <p className="text-xs text-[#8C8984] leading-relaxed">
+            <p className="text-sm text-[#8C8984] leading-relaxed">
               {project.architectureOverview}
             </p>
           </div>
@@ -140,7 +140,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           {/* Code Snippet if present */}
           {project.codeSnippet && (
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-mono text-[#66635F]">
+              <div className="flex items-center justify-between text-sm font-mono text-[#66635F]">
                 <span>{project.codeSnippet.filename}</span>
                 <button
                   onClick={handleCopyCode}
@@ -151,7 +151,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 </button>
               </div>
               <div className="p-4 rounded-xl bg-[#080808] border border-white/6 overflow-x-auto">
-                <pre className="font-mono text-xs text-[#C8C2B8] leading-relaxed">
+                <pre className="font-mono text-sm text-[#C8C2B8] leading-relaxed">
                   <code>{project.codeSnippet.code}</code>
                 </pre>
               </div>
@@ -163,7 +163,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#080808] border border-white/4 text-[#7A7773]"
+                className="px-2.5 py-1 rounded-md text-[13px] font-mono bg-[#080808] border border-white/4 text-[#7A7773]"
               >
                 {tech}
               </span>
