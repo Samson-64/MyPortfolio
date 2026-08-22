@@ -77,10 +77,10 @@ ${EDUCATION.map(
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 15 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-3xl max-h-[90vh] bg-[#0C0C0C] border border-white/[0.08] rounded-3xl shadow-2xl overflow-y-auto my-auto flex flex-col"
+        className="relative w-full max-w-3xl max-h-[90vh] bg-[#0C0C0C] border border-white/8 rounded-3xl shadow-2xl overflow-y-auto my-auto flex flex-col"
       >
         {/* Modal Controls */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/[0.04]">
+        <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/4">
           <div className="text-xs font-mono uppercase tracking-widest text-[#E8DEC8]">
             Curriculum Vitae
           </div>
@@ -88,7 +88,7 @@ ${EDUCATION.map(
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-3 py-1 rounded-full border border-white/[0.08] text-xs font-mono text-[#8C8984] hover:text-white transition-colors cursor-pointer"
+              className="px-3 py-1 rounded-full border border-white/8 text-xs font-mono text-[#8C8984] hover:text-white transition-colors cursor-pointer"
             >
               Print
             </button>
@@ -110,7 +110,7 @@ ${EDUCATION.map(
         {/* CV Body */}
         <div ref={printRef} className="p-8 sm:p-10 space-y-8 text-left text-[#ECE5DA]">
           {/* Header */}
-          <div className="border-b border-white/[0.04] pb-6 space-y-2">
+          <div className="border-b border-white/4 pb-6 space-y-2">
             <h1 className="font-serif text-3xl font-light text-[#E8E2D8]">
               {PERSONAL_INFO.name}
             </h1>
@@ -128,13 +128,13 @@ ${EDUCATION.map(
               Skills Breakdown
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.04] space-y-1">
+              <div className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1">
                 <span className="font-medium text-[#E8E2D8] font-mono">Frontend (Advanced)</span>
                 <p className="text-[#7A7773] leading-relaxed text-[11px]">
                   React 19/18, TypeScript, Next.js, Tailwind CSS, Motion, Responsive Design, State Management.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.04] space-y-1">
+              <div className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1">
                 <span className="font-medium text-[#E8E2D8] font-mono">Backend &amp; APIs (Foundational)</span>
                 <p className="text-[#7A7773] leading-relaxed text-[11px]">
                   REST API Consumption, WebSockets, Node.js &amp; Express (Basics), Git, PostgreSQL (Learning).
