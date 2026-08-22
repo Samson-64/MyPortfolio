@@ -7,9 +7,9 @@ export const PERSONAL_INFO = {
   location: 'Dar es Salaam, Tanzania / Remote',
   availability: 'Available for frontend roles',
   email: 'samsonmamuya41@gmail.com',
-  github: 'https://github.com',
-  instagram: 'https://instagram.com',
-  facebook: 'https://facebook.com',
+  github: 'https://github.com/Samson-64',
+  instagram: 'https://www.instagram.com/samson_mamuya/',
+  facebook: 'https://www.facebook.com/samson.mamuya/',
   bio: 'Frontend developer specializing in React, Next.js, and TypeScript. Passionate about building fast, accessible, and aesthetically refined user interfaces.',
   stats: [
     { label: 'Experience', value: '4+ Years' },
