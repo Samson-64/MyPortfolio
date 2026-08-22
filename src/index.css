@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: dark;
+  }
+
+  .font-serif {
+    font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Minimalist calm dark scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1C1C1C;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2E2E2E;
+}
+
+/* Soft atmospheric vignette glow */
+.hero-vignette {
+  mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
+}
+
+.card-vignette {
+  background: radial-gradient(circle at 50% 0%, rgba(232, 222, 200, 0.03) 0%, rgba(14, 14, 14, 0.95) 75%);
+}

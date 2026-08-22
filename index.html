@@ -1,124 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samson Philipo Mamuya | Portfolio</title>
-  <link rel="stylesheet" href="css/index.css" />
-  <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
-  <!-- AOS Animation CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-  <!-- Typed.js for type animation -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-</head>
-
-<body>
-  <header class="navbar" data-aos="fade-down">
-    <div class="container">
-      <div class="logo">Samson Philipo Mamuya</div>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <section class="hero">
-    <div class="container" data-aos="fade-up">
-      <h1>
-        Hello, I'm
-        <span class="highlight" id="typed-name">Samson Philipo Mamuya</span>
-      </h1>
-      <p class="subtitle"><span id="typed-roles"></span></p>
-    </div>
-  </section>
-  <section id="about" class="about">
-    <div class="container" data-aos="fade-right">
-      <div class="about-content">
-        <img src="assets/images/aboutImg.png" alt="About Samson Philipo Mamuya" class="about-img" />
-        <div class="about-text">
-          <h2>About</h2>
-          <p>
-            I’m Samson Philipo Mamuya, a Frontend Developer passionate about building modern, responsive, and
-            interactive web experiences. I enjoy turning ideas and designs into clean, functional, and user-friendly
-            interfaces that work seamlessly across different devices.
-            <br>
-            <br>
-            My main expertise is in JavaScript, React, Next.js, Tailwind CSS, and modern frontend development. I also
-            work with technologies such as Framer Motion and GSAP to create engaging and dynamic user
-            experiences.
-            <br>
-            <br>  
-            I enjoy solving problems, learning new technologies, and building real-world projects that combine great
-            design, performance, and usability.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 data-aos="fade-up">Skills</h2>
-      <div class="project-list">
-        <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fas fa-robot project-icon"></i>
-          <h3>Automations with AI</h3>
-          <p>
-            Developed intelligent automation systems using AI to streamline
-            workflows and boost productivity.
-          </p>
-        </div>
-        <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-          <i class="fas fa-laptop-code project-icon"></i>
-          <h3>Website Designing</h3>
-          <p>
-            Designed and built responsive, user-friendly websites for various
-            clients and personal projects.
-          </p>
-        </div>
-        <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-          <i class="fas fa-chart-line project-icon"></i>
-          <h3>Trading</h3>
-          <p>
-            Applied data-driven strategies and automation to trading for
-            better decision-making and results.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="contact" class="contact">
-    <div class="container" data-aos="fade-down">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li><i class="fas fa-phone"> +255 67 3353 890</i></li>
-        <li>
-          <a href="mailto:samsonmamuya86@gmail.com"><i class="fas fa-envelope"></i></a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/samson_mamuya/" target="_blank" rel="noopener"><i
-              class="fab fa-instagram"></i></a>
-        </li>
-        <li>
-          <a href="https://web.facebook.com/samson.mamuya" target="_blank" rel="noopener"><i
-              class="fab fa-facebook"></i></a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <footer class="footer">
-    <div class="container" data-aos="fade-up">
-      <p>&copy; 2025 Samson Philipo Mamuya. All rights reserved.</p>
-    </div>
-  </footer>
-</body>
-<!-- AOS Animation JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-<!-- Main JS -->
-<script src="js/main.js"></script>
-
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Samson Mamuya — Frontend Developer &amp; UI Engineer</title>
+    <meta name="description" content="Frontend Developer specializing in React, Next.js, TypeScript, and clean UI engineering." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#080808] text-[#ECE5DA] antialiased selection:bg-[#E8DEC8] selection:text-[#080808]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
