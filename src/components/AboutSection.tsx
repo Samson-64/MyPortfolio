@@ -78,7 +78,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
           </div>
 
           {/* Recent Roles */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
               Experience
             </span>
@@ -100,7 +100,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>
