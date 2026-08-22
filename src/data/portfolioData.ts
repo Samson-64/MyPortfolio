@@ -1,6 +1,7 @@
 import { Project, SkillCategory, WorkExperience, Education, Testimonial } from '../types';
 import beanThereImg from '../assets/images/proj1.png';
 import sunNSunImg from '../assets/images/proj2.png';
+import safariVoyageImg from '../assets/images/proj3.png';
 
 export const PERSONAL_INFO = {
   name: 'Samson Mamuya',
@@ -133,6 +134,54 @@ export const PROJECTS: Project[] = [
       {
         url: sunNSunImg,
         caption: 'Sun N Sun Beach Hotel — video hero, rooms showcase & booking widget'
+      }
+    ]
+  },
+  {
+    id: 'safarivoyage-africa',
+    title: 'SafariVoyage Africa',
+    tagline: 'Luxury African travel front-end with a complete client-side booking flow',
+    category: 'React',
+    year: '2026',
+    clientOrOrg: 'Personal Project',
+    summary: 'A luxury African travel front-end for browsing destinations, curated guided tours, and wildlife guides — with a complete client-side booking flow. Built as a single-page React application; no backend required.',
+    problem: 'Making ten African destinations, curated tour packages, and an end-to-end booking journey feel effortless in one fast front-end without any server.',
+    role: 'Design & Frontend Development',
+    architectureOverview: 'Single-page React 19 + TypeScript app built with Vite 6 and styled with Tailwind CSS 4; domain data centralized in src/data/africanData.ts, i18n strings and currency rates in src/utils/translations.ts, and a procedurally synthesized savanna ambience generator via the Web Audio API (src/utils/soundscape.ts). Bookings and newsletter signups persist to localStorage only.',
+    techStack: ['React 19', 'TypeScript', 'Vite 6', 'Tailwind CSS 4', 'Motion', 'Lucide'],
+    githubUrl: 'https://github.com/Samson-64/safarivoyage-africa',
+    keyFeatures: [
+      'Hero carousel auto-playing ten African destinations (Serengeti, Victoria Falls, Giza & more)',
+      'Full-text search with region pills, activity, duration, difficulty & max-budget filters',
+      'Guided tour packages: day-by-day itineraries, inclusions/exclusions, guide languages & pricing',
+      '4-step booking wizard ending in a printable boarding-pass confirmation with .ics export',
+      'My Bookings portal listing confirmed expeditions saved in the browser',
+      'Big Five wildlife spotter with interactive field dossiers (lion, leopard, elephant, rhino, buffalo)',
+      'Editorial conservation & community impact storytelling sections',
+      'Localization in English, French, Kiswahili, Spanish, German & Arabic',
+      'Multi-currency pricing across USD, EUR, GBP, KES, ZAR & EGP',
+      'Procedural savanna soundscape synthesized live via the Web Audio API'
+    ],
+    metrics: [
+      { label: 'Destinations', value: '10' },
+      { label: 'Languages', value: '6' },
+      { label: 'Currencies', value: '6' },
+      { label: 'Booking Steps', value: '4' }
+    ],
+    challenges: [
+      {
+        challenge: 'Delivering rich booking interactivity without any backend',
+        solution: 'Complete client-side booking flow with localStorage persistence, printable boarding-pass confirmation, and .ics calendar export.'
+      },
+      {
+        challenge: 'Serving six languages and six currencies without cluttering components',
+        solution: 'Centralized translation map and fixed-rate currency formatting utilities powering navbar pickers.'
+      }
+    ],
+    screenshots: [
+      {
+        url: safariVoyageImg,
+        caption: 'SafariVoyage Africa — hero carousel, destination search & guided tours'
       }
     ]
   }
