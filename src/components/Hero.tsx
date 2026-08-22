@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PERSONAL_INFO, CLIENT_LOGOS } from '../data/portfolioData';
-import heroPortraitImg from '../assets/images/hero_moody_portrait_1787407878893.jpg';
+import heroPortraitImg from '../assets/images/heroImg.jpeg';
 
 interface HeroProps {
   onNavigate: (sectionId: string) => void;
@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <img
               src={heroPortraitImg}
               alt={PERSONAL_INFO.name}
-              className="w-full h-full object-cover grayscale brightness-90 contrast-125"
+              className=" object-cover contrast-125"
             />
             {/* Smooth Edge Blend */}
             <div className="absolute inset-0 bg-radial from-transparent via-[#080808]/40 to-[#080808]" />
