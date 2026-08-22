@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types';
-import fallbackProjectImg from '../assets/images/laptop_dark_render_1787407899771.jpg';
+import fallbackProjectImg from '../assets/images/proj1.png';
 
 interface ProjectsSectionProps {
   onSelectProject: (project: Project) => void;

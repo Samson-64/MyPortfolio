@@ -13,7 +13,7 @@ export interface Project {
     solution: string;
   }[];
   keyFeatures?: string[];
-  metrics: {
+  metrics?: {
     label: string;
     value: string;
   }[];

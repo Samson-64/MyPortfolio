@@ -137,6 +137,42 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
             </p>
           </div>
 
+          {/* Metrics Highlights */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {project.metrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1"
+                >
+                  <span className="text-base font-medium text-[#E8DEC8] block font-serif">
+                    {metric.value}
+                  </span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#66635F] block">
+                    {metric.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Key Features */}
+          {project.keyFeatures && project.keyFeatures.length > 0 && (
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
+                Key Features
+              </span>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                {project.keyFeatures.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2 text-sm text-[#8C8984] leading-relaxed">
+                    <Check className="w-3.5 h-3.5 text-[#E8DEC8] shrink-0 mt-1" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Code Snippet if present */}
           {project.codeSnippet && (
             <div className="space-y-2">

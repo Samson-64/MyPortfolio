@@ -1,6 +1,6 @@
 import { Project, SkillCategory, WorkExperience, Education, Testimonial } from '../types';
-import laptopRenderImg from '../assets/images/laptop_dark_render_1787407899771.jpg';
-import deviceRenderImg from '../assets/images/device_dark_render_1787407913544.jpg';
+import beanThereImg from '../assets/images/proj1.png';
+import sunNSunImg from '../assets/images/proj2.png';
 
 export const PERSONAL_INFO = {
   name: 'Samson Mamuya',
@@ -53,159 +53,86 @@ export const CLIENT_LOGOS = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 'nexus-stream',
-    title: 'NexusStream',
-    tagline: 'Real-time telemetry and interactive analytics dashboard',
+    id: 'bean-there',
+    title: 'Bean There',
+    tagline: 'Coffee roastery landing page with an interactive brew matcher quiz',
     category: 'React',
-    year: '2024',
-    clientOrOrg: 'FinTech Platform',
-    summary: 'A high-performance interactive dashboard featuring real-time data feeds, animated metrics charts, and smooth filtering.',
-    problem: 'Rendering dynamic charts and high-frequency data streams without UI frame drops.',
-    role: 'Lead Frontend Developer',
-    architectureOverview: 'Modular React 19 component hierarchy with custom hooks, WebSockets integration, and Tailwind styling.',
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'WebSockets', 'Chart.js'],
-    liveUrl: 'https://example.com/nexus-stream',
-    githubUrl: 'https://github.com/samsonmamuya/nexus-stream',
-    metrics: [
-      { label: 'UI Frame Rate', value: '60 FPS' },
-      { label: 'Lighthouse Score', value: '99/100' },
-      { label: 'Load Time', value: '0.48s' },
-      { label: 'Components', value: '35+ Reusable' }
+    year: '2026',
+    clientOrOrg: 'Personal Project — Fictional Coffee Roastery',
+    summary: 'A modern coffee roastery landing page built with React, TypeScript, Vite, and Tailwind CSS, showcasing seasonal drinks, operating hours, location details, and an interactive coffee quiz experience.',
+    problem: 'Presenting a seasonal menu, opening hours, and location in one fast single-page site while helping visitors discover drinks that actually match their taste.',
+    role: 'Design & Frontend Development',
+    architectureOverview: 'Component-driven React + TypeScript SPA powered by the Vite toolchain and styled entirely with Tailwind CSS; reusable UI components in src/components, static menu and quiz content in src/data, with helper logic in src/utils.',
+    techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Lucide React'],
+    githubUrl: 'https://github.com/Samson-64/Bean-There',
+    keyFeatures: [
+      'Responsive React + TypeScript UI',
+      'Interactive seasonal menu & drink detail modal',
+      'Live operating-hours status card',
+      'Location & reservation inquiry section',
+      'Brew matcher quiz for personalized drink recommendations',
+      'Vite-powered development and build toolchain'
     ],
     challenges: [
       {
-        challenge: 'Maintaining smooth 60fps animations with frequent telemetry updates',
-        solution: 'Used React memoization, debounced data dispatchers, and CSS hardware acceleration.'
+        challenge: 'Helping visitors choose from a menu they have never tried before',
+        solution: 'Built a brew matcher quiz that scores taste preferences and recommends matching seasonal drinks.'
       },
       {
-        challenge: 'Creating a clean, accessible dark theme dashboard',
-        solution: 'Engineered a semantic Tailwind color system with strict WCAG contrast compliance.'
+        challenge: 'Communicating whether the roastery is open right now',
+        solution: 'Live operating-hours status card derived from the weekly opening schedule.'
       }
     ],
-    codeSnippet: {
-      language: 'typescript',
-      filename: 'useTelemetryStream.ts',
-      code: `// Custom hook for smooth real-time telemetry updates
-import { useState, useEffect } from 'react';
-
-export function useTelemetryStream<T>(socketUrl: string) {
-  const [data, setData] = useState<T | null>(null);
-
-  useEffect(() => {
-    const ws = new WebSocket(socketUrl);
-    ws.onmessage = (event) => {
-      const payload = JSON.parse(event.data);
-      setData(payload);
-    };
-    return () => ws.close();
-  }, [socketUrl]);
-
-  return data;
-}`
-    },
     screenshots: [
       {
-        url: laptopRenderImg,
-        caption: 'NexusStream real-time analytics and telemetry UI'
+        url: beanThereImg,
+        caption: 'Bean There landing page — hero, seasonal menu & brew matcher'
       }
     ]
   },
   {
-    id: 'synapse-flow',
-    title: 'Synapse Flow',
-    tagline: 'Visual node workflow & interactive state canvas',
-    category: 'React',
-    year: '2024',
-    clientOrOrg: 'AI Automation Lab',
-    summary: 'An interactive drag-and-drop workflow canvas allowing users to visually connect automation nodes and inspect state.',
-    problem: 'Building an intuitive canvas with seamless dragging, zooming, and connection lines on all screen sizes.',
-    role: 'Frontend UI Engineer',
-    architectureOverview: 'Custom SVG canvas pipeline combined with Zustand state slices and smooth Framer Motion interactions.',
-    techStack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Motion'],
-    liveUrl: 'https://example.com/synapse-flow',
-    githubUrl: 'https://github.com/samsonmamuya/synapse-flow',
+    id: 'sun-n-sun-beach-hotel',
+    title: 'Sun N Sun Beach Hotel',
+    tagline: 'Beachfront hotel marketing site & early-stage booking platform',
+    category: 'Full-Stack',
+    year: '2026',
+    clientOrOrg: 'Sun N Sun Beach Hotel — Dar es Salaam, Tanzania',
+    summary: 'A beachfront hotel website and booking platform for a 3-star tropical retreat in Dar es Salaam: video hero with floating booking widget, rooms showcase, guest reviews, embedded map, and an Express.js REST API.',
+    problem: 'Giving a beachfront hotel a modern online presence that markets its rooms and amenities while letting guests start bookings from any device.',
+    role: 'Full-Stack Developer',
+    architectureOverview: 'Single-page Tailwind CSS frontend with vanilla JavaScript interactions (no build step), backed by an early-stage Node.js + Express 5 REST API structured for bookings, users, and other hotel services.',
+    techStack: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Node.js', 'Express 5', 'Google Maps Embed'],
+    githubUrl: 'https://github.com/Samson-64/SunNSun',
+    keyFeatures: [
+      'Hero background video with floating booking widget (check-in, check-out, guests)',
+      'Sticky glassmorphism navigation bar',
+      'Rooms showcase: Standard Ocean, Deluxe Sea View & Family Beach Suite',
+      'Amenities grid: beach access, parking, Wi-Fi, restaurant, 24/7 reception',
+      'Guest reviews section (4.3★ · 193 reviews)',
+      'Location section with embedded Google Map',
+      'Parallax CTA banner & animated wave footer with newsletter signup',
+      'Mobile-friendly floating "Book now" button + Express REST API (/api/users)'
+    ],
     metrics: [
-      { label: 'Render Speed', value: '60 FPS' },
-      { label: 'Mobile Support', value: '100% Touch' },
-      { label: 'Bundle Size', value: '32 KB' },
-      { label: 'Accessibility', value: 'WCAG AA' }
+      { label: 'Guest Rating', value: '4.3 / 5' },
+      { label: 'Reviews', value: '193' },
+      { label: 'Room Types', value: '3' },
+      { label: 'Hotel Class', value: '3-Star' }
     ],
     challenges: [
       {
-        challenge: 'Handling complex node drag physics and coordinate math',
-        solution: 'Implemented SVG path calculations with normalized viewport transformations.'
+        challenge: 'Creating an immersive video hero without sacrificing load performance',
+        solution: 'Optimized background video with a page-load spinner and mobile-friendly layout fallbacks.'
+      },
+      {
+        challenge: 'Building beyond a static marketing page toward real bookings',
+        solution: 'Structured early-stage Express 5 backend with clean routes ready for reservation endpoints and database integration.'
       }
     ],
     screenshots: [
       {
-        url: deviceRenderImg,
-        caption: 'Interactive workflow builder & drag-and-drop node graph'
-      }
-    ]
-  },
-  {
-    id: 'hyperscale-commerce',
-    title: 'HyperScale',
-    tagline: 'Sub-second modern headless e-commerce storefront',
-    category: 'React',
-    year: '2023',
-    clientOrOrg: 'Luxury Apparel Brand',
-    summary: 'A fast, editorial digital storefront with instant cart slide-outs, product filtering, and fluid page transitions.',
-    problem: 'Slow page transitions and laggy mobile menus impacting user conversion.',
-    role: 'Frontend Developer',
-    architectureOverview: 'Next.js App Router with server-side rendering, client state management, and Stripe checkout integration.',
-    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Stripe API'],
-    liveUrl: 'https://example.com/hyperscale',
-    githubUrl: 'https://github.com/samsonmamuya/hyperscale-commerce',
-    metrics: [
-      { label: 'First Contentful Paint', value: '0.38s' },
-      { label: 'Mobile Performance', value: '98/100' },
-      { label: 'Cart Sync Speed', value: 'Instant' },
-      { label: 'SEO Score', value: '100/100' }
-    ],
-    challenges: [
-      {
-        challenge: 'Zero-layout-shift image loading for dynamic catalog items',
-        solution: 'Used Next.js Image component with blur placeholders and aspect-ratio CSS constraints.'
-      }
-    ],
-    screenshots: [
-      {
-        url: laptopRenderImg,
-        caption: 'Headless storefront catalog and product gallery UI'
-      }
-    ]
-  },
-  {
-    id: 'devsphere-cloud',
-    title: 'DevSphere',
-    tagline: 'Developer interface & interactive web terminal',
-    category: 'React',
-    year: '2023',
-    clientOrOrg: 'Developer Tools',
-    summary: 'A dark-mode web application featuring an in-browser code editor, interactive terminal simulator, and file tree.',
-    problem: 'Creating an intuitive desktop-grade IDE experience within standard web browsers.',
-    role: 'Frontend UI Developer',
-    architectureOverview: 'React component system using Monaco Editor, xterm.js integration, and tab state management.',
-    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'Node.js (API)'],
-    liveUrl: 'https://example.com/devsphere',
-    githubUrl: 'https://github.com/samsonmamuya/devsphere',
-    metrics: [
-      { label: 'UI Latency', value: '< 16ms' },
-      { label: 'Dark Mode UI', value: 'Custom System' },
-      { label: 'Keyboard Shortcuts', value: '20+ Supported' },
-      { label: 'Test Coverage', value: '94%' }
-    ],
-    challenges: [
-      {
-        challenge: 'Ensuring seamless responsive design across desktop and tablet screens',
-        solution: 'Engineered flexible CSS Grid split-pane layouts with draggable divider handles.'
-      }
-    ],
-    screenshots: [
-      {
-        url: deviceRenderImg,
-        caption: 'Web-based IDE workspace, file explorer, and terminal UI'
+        url: sunNSunImg,
+        caption: 'Sun N Sun Beach Hotel — video hero, rooms showcase & booking widget'
       }
     ]
   }

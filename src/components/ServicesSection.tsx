@@ -38,7 +38,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
               }
             }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="p-8 rounded-2xl bg-[#0C0C0C] border border-white/[0.04] hover:border-white/[0.14] transition-all flex flex-col justify-between group shadow-sm hover:shadow-2xl hover:shadow-black/60"
+            className="p-8 rounded-2xl bg-[#0C0C0C] border border-white/4 hover:border-white/[0.14] transition-all flex flex-col justify-between group shadow-sm hover:shadow-2xl hover:shadow-black/60"
           >
             <div className="space-y-4">
               <span className="text-[13px] font-mono text-[#504E4B] block group-hover:text-[#8C8984] transition-colors">
@@ -54,7 +54,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
               </p>
             </div>
 
-            <div className="pt-8 mt-4 border-t border-white/[0.03] flex items-center justify-between">
+            <div className="pt-8 mt-4 border-t border-white/3 flex items-center justify-between">
               <button
                 onClick={() => onNavigate('projects')}
                 className="text-xs font-mono tracking-widest uppercase text-[#55524E] group-hover:text-[#E8DEC8] transition-colors cursor-pointer flex items-center gap-1.5"
