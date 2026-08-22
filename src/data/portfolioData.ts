@@ -1,4 +1,6 @@
 import { Project, SkillCategory, WorkExperience, Education, Testimonial } from '../types';
+import laptopRenderImg from '../assets/images/laptop_dark_render_1787407899771.jpg';
+import deviceRenderImg from '../assets/images/device_dark_render_1787407913544.jpg';
 
 export const PERSONAL_INFO = {
   name: 'Samson Mamuya',
@@ -103,7 +105,7 @@ export function useTelemetryStream<T>(socketUrl: string) {
     },
     screenshots: [
       {
-        url: '/src/assets/images/laptop_dark_render_1787407899771.jpg',
+        url: laptopRenderImg,
         caption: 'NexusStream real-time analytics and telemetry UI'
       }
     ]
@@ -136,7 +138,7 @@ export function useTelemetryStream<T>(socketUrl: string) {
     ],
     screenshots: [
       {
-        url: '/src/assets/images/device_dark_render_1787407913544.jpg',
+        url: deviceRenderImg,
         caption: 'Interactive workflow builder & drag-and-drop node graph'
       }
     ]
@@ -169,7 +171,7 @@ export function useTelemetryStream<T>(socketUrl: string) {
     ],
     screenshots: [
       {
-        url: '/src/assets/images/laptop_dark_render_1787407899771.jpg',
+        url: laptopRenderImg,
         caption: 'Headless storefront catalog and product gallery UI'
       }
     ]
@@ -202,7 +204,7 @@ export function useTelemetryStream<T>(socketUrl: string) {
     ],
     screenshots: [
       {
-        url: '/src/assets/images/device_dark_render_1787407913544.jpg',
+        url: deviceRenderImg,
         caption: 'Web-based IDE workspace, file explorer, and terminal UI'
       }
     ]

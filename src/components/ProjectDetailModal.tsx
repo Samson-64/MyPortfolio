@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Github, Code2, Copy, Check } from 'lucide-react';
+import { X, ExternalLink, Github, Copy, Check } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Project } from '../types';
 
@@ -35,10 +35,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 15 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-3xl max-h-[90vh] bg-[#0C0C0C] border border-white/[0.08] rounded-3xl shadow-2xl overflow-y-auto my-auto flex flex-col"
+        className="relative w-full max-w-3xl max-h-[90vh] bg-[#0C0C0C] border border-white/8 rounded-3xl shadow-2xl overflow-y-auto my-auto flex flex-col"
       >
         {/* Modal Header */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/[0.04]">
+        <div className="sticky top-0 z-20 flex items-center justify-between px-8 py-5 bg-[#0C0C0C]/95 backdrop-blur-md border-b border-white/4">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#E8DEC8] border border-[#E8DEC8]/30 px-2.5 py-0.5 rounded-full">
               {project.category}
@@ -51,7 +51,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           <button
             id="close-project-modal-btn"
             onClick={onClose}
-            className="p-1.5 rounded-full text-[#777] hover:text-[#ECE5DA] hover:bg-white/[0.04] transition-colors cursor-pointer"
+            className="p-1.5 rounded-full text-[#777] hover:text-[#ECE5DA] hover:bg-white/4 transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -88,7 +88,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-white/[0.08] hover:border-white/[0.2] px-4 py-1.5 rounded-full text-xs font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1.5"
+                className="border border-white/8 hover:border-white/20 px-4 py-1.5 rounded-full text-xs font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1.5"
               >
                 <Github className="w-3 h-3" />
                 <span>Source Repository</span>
@@ -98,7 +98,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Project Image */}
           {project.screenshots && project.screenshots[0] && (
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] aspect-video bg-[#090909]">
+            <div className="relative overflow-hidden rounded-2xl border border-white/6 aspect-video bg-[#090909]">
               <img
                 src={project.screenshots[0].url}
                 alt={project.title}
@@ -109,7 +109,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Problem & Role Overview */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl bg-[#080808] border border-white/[0.04] space-y-2">
+            <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
                 The Problem
               </span>
@@ -117,7 +117,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 {project.problem}
               </p>
             </div>
-            <div className="p-5 rounded-2xl bg-[#080808] border border-white/[0.04] space-y-2">
+            <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
                 Architectural Role
               </span>
@@ -128,7 +128,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           </div>
 
           {/* Architecture Strategy */}
-          <div className="p-5 rounded-2xl bg-[#080808] border border-white/[0.04] space-y-2">
+          <div className="p-5 rounded-2xl bg-[#080808] border border-white/4 space-y-2">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
               Strategy &amp; Execution
             </span>
@@ -150,7 +150,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                   <span>{copiedCode ? 'COPIED' : 'COPY'}</span>
                 </button>
               </div>
-              <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.06] overflow-x-auto">
+              <div className="p-4 rounded-xl bg-[#080808] border border-white/6 overflow-x-auto">
                 <pre className="font-mono text-xs text-[#C8C2B8] leading-relaxed">
                   <code>{project.codeSnippet.code}</code>
                 </pre>
@@ -163,7 +163,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#080808] border border-white/[0.04] text-[#7A7773]"
+                className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#080808] border border-white/4 text-[#7A7773]"
               >
                 {tech}
               </span>

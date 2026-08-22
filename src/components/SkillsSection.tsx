@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Layout, Server, Database, Cloud, Code } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { SkillItem } from '../types';
@@ -29,7 +29,7 @@ export const SkillsSection: React.FC = () => {
   });
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 border-b border-white/[0.06] bg-zinc-950/40">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 border-b border-white/6 bg-zinc-950/40">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -55,7 +55,7 @@ export const SkillsSection: React.FC = () => {
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 activeCategoryIndex === 'all'
                   ? 'bg-amber-400 text-black font-semibold shadow-md shadow-amber-500/20'
-                  : 'bg-zinc-900/80 text-zinc-400 hover:text-white border border-white/[0.06]'
+                  : 'bg-zinc-900/80 text-zinc-400 hover:text-white border border-white/6'
               }`}
             >
               All Skills ({allSkills.length})
@@ -68,7 +68,7 @@ export const SkillsSection: React.FC = () => {
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                   activeCategoryIndex === idx
                     ? 'bg-amber-400 text-black font-semibold shadow-md shadow-amber-500/20'
-                    : 'bg-zinc-900/80 text-zinc-400 hover:text-white border border-white/[0.06]'
+                    : 'bg-zinc-900/80 text-zinc-400 hover:text-white border border-white/6'
                 }`}
               >
                 {cat.title}
@@ -85,7 +85,7 @@ export const SkillsSection: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter by keyword (e.g., Redis)..."
-              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-400/50"
+              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-zinc-900 border border-white/6 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-400/50"
             />
           </div>
         </div>
@@ -98,13 +98,13 @@ export const SkillsSection: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: Math.min(idx * 0.02, 0.2) }}
-              className="p-5 rounded-xl bg-zinc-900/60 border border-white/[0.06] hover:border-amber-400/30 transition-all space-y-2.5"
+              className="p-5 rounded-xl bg-zinc-900/60 border border-white/6 hover:border-amber-400/30 transition-all space-y-2.5"
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-white font-mono flex items-center gap-2">
                   <span>{skill.name}</span>
                 </h3>
-                <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-800 text-amber-300 border border-white/[0.04]">
+                <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-800 text-amber-300 border border-white/4">
                   {skill.experienceLevel}
                 </span>
               </div>

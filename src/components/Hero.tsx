@@ -2,13 +2,13 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PERSONAL_INFO, CLIENT_LOGOS } from '../data/portfolioData';
+import heroPortraitImg from '../assets/images/hero_moody_portrait_1787407878893.jpg';
 
 interface HeroProps {
   onNavigate: (sectionId: string) => void;
-  onOpenResume: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
+export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section
       id="home"
@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
           {/* Subtle Radial Gradient Vignette over image */}
           <div className="w-full h-full rounded-full overflow-hidden relative">
             <img
-              src="/src/assets/images/hero_moody_portrait_1787407878893.jpg"
+              src={heroPortraitImg}
               alt={PERSONAL_INFO.name}
               className="w-full h-full object-cover grayscale brightness-90 contrast-125"
             />
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
           <button
             id="hero-services-btn"
             onClick={() => onNavigate('services')}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/[0.08] bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/[0.16] text-[10px] font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515]"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/8 bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/20 text-[10px] font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515]"
           >
             <span>My Services</span>
             <motion.span
@@ -91,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenResume }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="w-full pt-16 mt-6 border-t border-white/[0.04]"
+          className="w-full pt-16 mt-6 border-t border-white/4"
         >
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-xs font-mono tracking-widest text-[#504E4B] uppercase">
             {CLIENT_LOGOS.map((tech, idx) => (

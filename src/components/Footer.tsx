@@ -4,16 +4,15 @@ import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
-  onOpenResume: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer id="main-footer" className="py-12 px-6 sm:px-8 border-t border-white/[0.04] bg-[#060606] text-[#66635F] text-xs font-mono">
+    <footer id="main-footer" className="py-12 px-6 sm:px-8 border-t border-white/4 bg-[#060606] text-[#66635F] text-xs font-mono">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <span className="text-[#8C8984]">© {new Date().getFullYear()} {PERSONAL_INFO.name}</span>

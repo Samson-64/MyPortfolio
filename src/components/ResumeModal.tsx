@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { X, Printer, Download } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PERSONAL_INFO, WORK_EXPERIENCE, EDUCATION, SKILL_CATEGORIES } from '../data/portfolioData';
+import { PERSONAL_INFO, WORK_EXPERIENCE, EDUCATION } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;

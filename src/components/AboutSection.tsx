@@ -1,15 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PERSONAL_INFO, WORK_EXPERIENCE } from '../data/portfolioData';
+import { WORK_EXPERIENCE } from '../data/portfolioData';
 
 interface AboutSectionProps {
-  onNavigate: (sectionId: string) => void;
   onOpenResume: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, onOpenResume }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
   return (
-    <section id="about" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/[0.04]">
+    <section id="about" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/4">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
         {/* Left: Heading & Bio */}
         <motion.div
@@ -51,7 +50,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, onOpenRe
           className="md:col-span-6 space-y-8"
         >
           {/* Skills 2-Column Minimal List */}
-          <div className="p-8 rounded-2xl bg-[#0C0C0C] border border-white/[0.04] space-y-5 hover:border-white/[0.1] transition-colors shadow-sm">
+          <div className="p-8 rounded-2xl bg-[#0C0C0C] border border-white/4 space-y-5 hover:border-white/10 transition-colors shadow-sm">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#66635F] block">
               Core Stack &amp; Skills
             </span>
@@ -91,7 +90,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, onOpenRe
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + idx * 0.08 }}
-                  className="flex items-baseline justify-between py-2 border-b border-white/[0.03] text-xs hover:border-white/[0.08] transition-colors group"
+                  className="flex items-baseline justify-between py-2 border-b border-white/3 text-xs hover:border-white/10 transition-colors group"
                 >
                   <div>
                     <span className="text-[#E8E2D8] font-medium group-hover:text-white transition-colors">{exp.role}</span>

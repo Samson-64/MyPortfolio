@@ -31,7 +31,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/[0.04]">
+    <section id="contact" className="py-24 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/4">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
         {/* Left: Heading & Direct Info with scroll trigger */}
         <motion.div
@@ -86,7 +86,7 @@ export const ContactSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.12, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="md:col-span-7"
         >
-          <div className="p-8 sm:p-10 rounded-2xl bg-[#0C0C0C] border border-white/[0.04] hover:border-white/[0.1] transition-colors shadow-sm">
+          <div className="p-8 sm:p-10 rounded-2xl bg-[#0C0C0C] border border-white/4 hover:border-white/10 transition-colors shadow-sm">
             {isSubmitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -124,7 +124,7 @@ export const ContactSection: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Alex"
-                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/[0.06] text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors"
+                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors"
                     />
                   </div>
                   <div className="space-y-1">
@@ -137,7 +137,7 @@ export const ContactSection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="alex@company.com"
-                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/[0.06] text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors"
+                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors"
                     />
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export const ContactSection: React.FC = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Briefly outline your project, goals, or timeline..."
-                    className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/[0.06] text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors resize-none"
+                    className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-xs text-[#ECE5DA] placeholder:text-[#444] focus:outline-none focus:border-[#E8DEC8]/40 transition-colors resize-none"
                   />
                 </div>
 

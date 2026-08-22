@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, FileText, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface NavbarProps {
   activeSection: string;
@@ -39,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
         id="main-navbar"
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'py-3.5 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.04]'
+            ? 'py-3.5 bg-[#080808]/90 backdrop-blur-md border-b border-white/4'
             : 'py-6 bg-transparent'
         }`}
       >
@@ -118,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-x-4 top-20 z-30 p-5 rounded-2xl bg-[#0F0F0F] border border-white/[0.06] shadow-2xl backdrop-blur-xl md:hidden"
+            className="fixed inset-x-4 top-20 z-30 p-5 rounded-2xl bg-[#0F0F0F] border border-white/6 shadow-2xl backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
@@ -133,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                   {item.label}
                 </button>
               ))}
-              <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between">
+              <div className="pt-3 border-t border-white/6 flex items-center justify-between">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);

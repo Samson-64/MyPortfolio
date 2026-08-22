@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -58,7 +58,7 @@ export function App() {
       {/* Sleek Top Scroll Progress Bar */}
       <motion.div
         id="scroll-progress-bar"
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#E8DEC8] via-[#DCD0B8] to-[#E8DEC8] origin-left z-50 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#E8DEC8] via-[#DCD0B8] to-[#E8DEC8] origin-left z-50 pointer-events-none"
         style={{ scaleX }}
       />
 
@@ -73,7 +73,6 @@ export function App() {
       <main className="relative">
         <Hero
           onNavigate={scrollToSection}
-          onOpenResume={() => setIsResumeOpen(true)}
         />
 
         <ServicesSection
@@ -85,7 +84,6 @@ export function App() {
         />
 
         <AboutSection
-          onNavigate={scrollToSection}
           onOpenResume={() => setIsResumeOpen(true)}
         />
 
@@ -95,7 +93,6 @@ export function App() {
       {/* Footer */}
       <Footer
         onNavigate={scrollToSection}
-        onOpenResume={() => setIsResumeOpen(true)}
       />
 
       {/* Floating Back to Top Button */}

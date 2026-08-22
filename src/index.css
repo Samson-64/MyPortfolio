@@ -40,8 +40,8 @@
 
 /* Soft atmospheric vignette glow */
 .hero-vignette {
-  mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
   -webkit-mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
+  mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
 }
 
 .card-vignette {
