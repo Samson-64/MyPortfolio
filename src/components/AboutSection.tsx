@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { WORK_EXPERIENCE } from '../data/portfolioData';
 
 interface AboutSectionProps {
   onOpenResume: () => void;
@@ -76,31 +75,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
               </div>
             </div>
           </div>
-
-          {/* Recent Roles */}
-          {/* <div className="space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#66635F] block">
-              Experience
-            </span>
-            <div className="space-y-3">
-              {WORK_EXPERIENCE.map((exp, idx) => (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.2 + idx * 0.08 }}
-                  className="flex items-baseline justify-between py-2 border-b border-white/3 text-sm hover:border-white/10 transition-colors group"
-                >
-                  <div>
-                    <span className="text-[#E8E2D8] font-medium group-hover:text-white transition-colors">{exp.role}</span>
-                    <span className="text-[#66635F] ml-2">@ {exp.company}</span>
-                  </div>
-                  <span className="text-[#55524E] font-mono">{exp.period}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div> */}
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesSection } from './components/ServicesSection';
@@ -16,13 +15,6 @@ export function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,13 +47,6 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#080808] text-[#ECE5DA] selection:bg-[#E8DEC8] selection:text-[#080808] relative">
-      {/* Sleek Top Scroll Progress Bar */}
-      <motion.div
-        id="scroll-progress-bar"
-        className="fixed top-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#E8DEC8] via-[#DCD0B8] to-[#E8DEC8] origin-left z-50 pointer-events-none"
-        style={{ scaleX }}
-      />
-
       {/* Fixed Minimal Navbar */}
       <Navbar
         activeSection={activeSection}
