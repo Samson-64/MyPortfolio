@@ -8,13 +8,11 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { ResumeModal } from './components/ResumeModal';
 import { Project } from './types';
 
 export function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +49,6 @@ export function App() {
       <Navbar
         activeSection={activeSection}
         onNavigate={scrollToSection}
-        onOpenResume={() => setIsResumeOpen(true)}
       />
 
       {/* Main Content Layout matching the Framer template */}
@@ -68,9 +65,7 @@ export function App() {
           onSelectProject={(project) => setSelectedProject(project)}
         />
 
-        <AboutSection
-          onOpenResume={() => setIsResumeOpen(true)}
-        />
+        <AboutSection />
 
         <ContactSection />
       </main>
@@ -87,12 +82,6 @@ export function App() {
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
-      />
-
-      {/* Resume / CV Modal */}
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
       />
     </div>
   );
