@@ -184,9 +184,9 @@ export const ContactSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="block text-xs font-mono uppercase tracking-widest text-[#55524E]">
+                    {/* <label className="block text-xs font-mono uppercase tracking-widest text-[#55524E]">
                       Name
-                    </label>
+                    </label> */}
                     <input
                       type="text"
                       required
@@ -197,9 +197,9 @@ export const ContactSection: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="block text-xs font-mono uppercase tracking-widest text-[#55524E]">
+                    {/* <label className="block text-xs font-mono uppercase tracking-widest text-[#55524E]">
                       Email
-                    </label>
+                    </label> */}
                     <input
                       type="email"
                       required
