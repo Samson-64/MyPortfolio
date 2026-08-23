@@ -2,12 +2,9 @@ import React from 'react';
 import { MapPin, CheckCircle2, FileText } from 'lucide-react';
 import { motion } from 'motion/react';
 import { WORK_EXPERIENCE } from '../data/portfolioData';
+import cvPdf from '../assets/Doc/Samson_Mamuya_CV.pdf';
 
-interface ExperienceSectionProps {
-  onOpenResume: () => void;
-}
-
-export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResume }) => {
+export const ExperienceSection: React.FC = () => {
   return (
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 border-b border-white/6">
       <div className="max-w-6xl mx-auto">
@@ -21,14 +18,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
               Work experience &amp; roles.
             </h2>
           </div>
-          <button
+          <a
             id="experience-view-resume-btn"
-            onClick={onOpenResume}
+            href={cvPdf}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-white/8 text-sm font-medium text-zinc-200 transition-colors w-fit mt-3 md:mt-0 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5 text-amber-400" />
             <span>Open Complete CV</span>
-          </button>
+          </a>
         </div>
 
         {/* Experience Timeline */}

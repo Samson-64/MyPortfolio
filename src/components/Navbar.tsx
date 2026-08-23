@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import cvPdf from '../assets/Doc/Samson_Mamuya_CV.pdf';
 
 interface NavbarProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
-  onOpenResume: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpenResume }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
               className="text-left cursor-pointer focus:outline-none group flex items-center gap-2"
             >
               <span className="font-serif text-lg text-[#ECE5DA] tracking-tight font-normal group-hover:text-[#E8DEC8] transition-colors">
-                samson<span className="text-[#888]">.</span>
+                Samson Mamuya
               </span>
             </button>
 
@@ -76,13 +76,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
 
             {/* Action Buttons */}
             <div className="hidden sm:flex items-center gap-3">
-              <button
+              <a
                 id="nav-resume-btn"
-                onClick={onOpenResume}
+                href={cvPdf}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[13px] font-mono text-[#8C8984] hover:text-[#ECE5DA] transition-colors cursor-pointer px-2 py-1"
               >
                 CV
-              </button>
+              </a>
 
               <button
                 id="nav-contact-cta-btn"
@@ -133,15 +135,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                 </button>
               ))}
               <div className="pt-3 border-t border-white/6 flex items-center justify-between">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenResume();
-                  }}
+                <a
+                  href={cvPdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="text-sm font-mono text-[#8C8984] hover:text-white"
                 >
                   Resume / CV
-                </button>
+                </a>
                 <button
                   onClick={() => handleItemClick('contact')}
                   className="bg-[#E8DEC8] text-[#080808] px-4 py-1.5 rounded-full text-sm font-medium uppercase tracking-wider"

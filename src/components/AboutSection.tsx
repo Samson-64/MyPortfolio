@@ -1,11 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import cvPdf from '../assets/Doc/Samson_Mamuya_CV.pdf';
 
-interface AboutSectionProps {
-  onOpenResume: () => void;
-}
-
-export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
+export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/4">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
@@ -30,13 +27,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
           </p>
 
           <div className="flex items-center gap-4 pt-2">
-            <button
-              onClick={onOpenResume}
+            <a
+              href={cvPdf}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-mono tracking-wider uppercase text-[#E8DEC8] hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1 group"
             >
               <span>[ View Curriculum Vitae</span>
               <span className="group-hover:translate-x-1 transition-transform">→ ]</span>
-            </button>
+            </a>
           </div>
         </motion.div>
 
