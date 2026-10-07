@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import cvPdf from '../assets/Doc/Samson_Mamuya_CV.pdf';
 
 interface NavbarProps {
@@ -9,15 +9,20 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
+  const reduce = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const sentinel = document.getElementById('scroll-sentinel');
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsScrolled(!entry.isIntersecting);
+    });
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
   }, []);
 
   const navItems = [
@@ -48,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
             <button
               id="nav-brand-logo"
               onClick={() => handleItemClick('home')}
-              className="text-left cursor-pointer focus:outline-none group flex items-center gap-2"
+              className="text-left cursor-pointer group flex items-center gap-2"
             >
               <span className="font-serif text-lg text-[#ECE5DA] tracking-tight font-normal group-hover:text-[#E8DEC8] transition-colors">
                 Samson Mamuya
@@ -56,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
             </button>
 
             {/* Centered Navigation Links */}
-            <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-widest text-[#7C7A76]">
+            <nav aria-label="Primary" className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-widest text-[#8C8984]">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -64,7 +69,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                     key={item.id}
                     id={`nav-link-${item.id}`}
                     onClick={() => handleItemClick(item.id)}
-                    className={`transition-colors cursor-pointer ${
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`transition-colors cursor-pointer active:text-[#E8DEC8] ${
                       isActive ? 'text-[#ECE5DA]' : 'hover:text-[#ECE5DA]'
                     }`}
                   >
@@ -89,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
               <button
                 id="nav-contact-cta-btn"
                 onClick={() => handleItemClick('contact')}
-                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] text-[13px] font-medium tracking-wider uppercase px-4 py-1.5 rounded-full transition-all cursor-pointer shadow-xs"
+                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] text-[13px] font-medium tracking-wider uppercase px-4 py-1.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-[0.98]"
               >
                 Let's Talk
               </button>
@@ -100,8 +106,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
               <button
                 id="mobile-menu-toggle-btn"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-1.5 text-[#8C8984] hover:text-[#ECE5DA] focus:outline-none"
+                className="p-1.5 text-[#8C8984] hover:text-[#ECE5DA]"
                 aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -115,9 +122,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
         {mobileMenuOpen && (
           <motion.div
             id="mobile-drawer-menu"
-            initial={{ opacity: 0, y: -8 }}
+            initial={reduce ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.15 }}
             className="fixed inset-x-4 top-20 z-30 p-5 rounded-2xl bg-[#0F0F0F] border border-white/6 shadow-2xl backdrop-blur-xl md:hidden"
           >
@@ -128,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                   id={`mobile-nav-${item.id}`}
                   onClick={() => handleItemClick(item.id)}
                   className={`py-2 text-sm font-medium uppercase tracking-widest text-left transition-colors ${
-                    activeSection === item.id ? 'text-[#E8DEC8]' : 'text-[#7C7A76] hover:text-white'
+                    activeSection === item.id ? 'text-[#E8DEC8]' : 'text-[#8C8984] hover:text-white'
                   }`}
                 >
                   {item.label}
@@ -146,7 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                 </a>
                 <button
                   onClick={() => handleItemClick('contact')}
-                  className="bg-[#E8DEC8] text-[#080808] px-4 py-1.5 rounded-full text-sm font-medium uppercase tracking-wider"
+                  className="bg-[#E8DEC8] text-[#080808] px-4 py-1.5 rounded-full text-sm font-medium uppercase tracking-wider active:scale-[0.98] transition-transform"
                 >
                   Let's Talk
                 </button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { SERVICES } from '../data/portfolioData';
 
 interface ServicesSectionProps {
@@ -8,10 +8,12 @@ interface ServicesSectionProps {
 }
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) => {
+  const reduce = useReducedMotion();
+
   return (
-    <section id="services" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto">
+    <section id="services" className="py-24 px-6 sm:px-8 max-w-5xl mx-auto">
       <motion.div
-        initial="hidden"
+        initial={reduce ? 'visible' : 'hidden'}
         whileInView="visible"
         viewport={{ once: true, margin: '-60px' }}
         variants={{
@@ -23,9 +25,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
             }
           }
         }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-5"
+        className="grid grid-cols-1 md:grid-cols-12 gap-5 md:auto-rows-fr"
       >
-        {SERVICES.map((srv) => (
+        {SERVICES.map((srv, idx) => (
           <motion.div
             key={srv.number}
             variants={{
@@ -37,8 +39,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
                 transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }
               }
             }}
-            whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="relative isolate min-h-[300px] overflow-hidden rounded-[2rem] bg-[#0C0C0C] border border-white/4 hover:border-white/[0.14] transition-all flex flex-col justify-between group shadow-sm hover:shadow-2xl hover:shadow-black/60"
+            whileHover={reduce ? undefined : { y: -4, transition: { duration: 0.2 } }}
+            className={`relative isolate min-h-[300px] overflow-hidden rounded-2xl bg-[#0C0C0C] border border-white/4 hover:border-white/[0.14] transition-all flex flex-col justify-between group shadow-sm hover:shadow-2xl hover:shadow-black/60 ${
+              idx === 0 ? 'md:col-span-5 md:row-span-2' : 'md:col-span-7'
+            }`}
           >
             {/* Decorative layers recreate the raised, soft-panel treatment without changing the card palette. */}
             <div aria-hidden="true" className="absolute inset-0 -z-10">
@@ -48,29 +52,26 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigate }) 
             </div>
 
             <div className="relative p-8 pb-0 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[13px] font-mono text-[#504E4B] block group-hover:text-[#8C8984] transition-colors">
-                  {srv.number}
-                </span>
-                <span aria-hidden="true" className="h-2 w-2 rounded-full border border-white/10" />
-              </div>
+              <span className="text-[13px] font-mono text-[#7E7B76] block group-hover:text-[#8C8984] transition-colors">
+                {srv.number}
+              </span>
 
               <h3 className="text-base font-semibold tracking-wider uppercase text-[#E8E2D8] font-sans group-hover:text-white transition-colors">
                 {srv.title}
               </h3>
 
-              <p className="text-sm text-[#7A7773] leading-relaxed">
+              <p className="text-sm text-[#8C8984] leading-relaxed">
                 {srv.description}
               </p>
             </div>
 
-            <div className="relative mx-3 mb-3 mt-8 rounded-[1.35rem] border border-white/[0.055] bg-[#0C0C0C] px-5 py-4 shadow-[0_-1px_0_rgba(255,255,255,0.035)_inset] transition-transform duration-300 group-hover:-translate-y-1">
+            <div className="relative mx-3 mb-3 mt-8 rounded-xl border border-white/[0.055] bg-[#0C0C0C] px-5 py-4 shadow-[0_-1px_0_rgba(255,255,255,0.035)_inset] transition-transform duration-300 group-hover:-translate-y-1">
               <button
                 onClick={() => onNavigate('projects')}
-                className="text-xs font-mono tracking-widest uppercase text-[#55524E] group-hover:text-[#E8DEC8] transition-colors cursor-pointer flex items-center gap-1.5"
+                className="text-xs font-mono tracking-widest uppercase text-[#7E7B76] group-hover:text-[#E8DEC8] transition-colors cursor-pointer flex items-center gap-1.5"
               >
-                <span>About {srv.tag}</span>
-                <ArrowUpRight className="w-3 h-3 text-[#55524E] group-hover:text-[#E8DEC8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span>Work</span>
+                <ArrowUpRight className="w-3 h-3 group-hover:text-[#E8DEC8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </div>
           </motion.div>

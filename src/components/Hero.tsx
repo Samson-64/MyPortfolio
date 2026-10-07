@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowDown } from 'lucide-react';
-import { motion } from 'motion/react';
-import { PERSONAL_INFO, CLIENT_LOGOS } from '../data/portfolioData';
+import { motion, useReducedMotion } from 'motion/react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 import heroPortraitImg from '../assets/images/heroImg.jpeg';
 
 interface HeroProps {
@@ -9,15 +8,24 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+  const reduce = useReducedMotion();
+
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col items-center justify-start pt-24 pb-16 px-6 sm:px-8 overflow-hidden"
+      className="relative min-h-[92dvh] flex flex-col items-center justify-start pt-24 pb-16 px-6 sm:px-8 overflow-hidden"
     >
+      {/* Marker at 75% of the hero: BackToTop reveals once it leaves the viewport */}
+      <div
+        id="hero-scroll-marker"
+        aria-hidden="true"
+        className="absolute top-[75%] left-0 h-px w-px"
+      />
+
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center">
         {/* Moody Developer Portrait with Smooth Vignette matching template */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, filter: 'blur(8px)' }}
+          initial={reduce ? false : { opacity: 0, scale: 0.92, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="relative w-44 h-44 sm:w-56 sm:h-56 mb-6 pointer-events-none"
@@ -27,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <img
               src={heroPortraitImg}
               alt={PERSONAL_INFO.name}
-              className=" object-cover contrast-125"
+              className="object-cover contrast-125"
             />
             {/* Smooth Edge Blend */}
             <div className="absolute inset-0 bg-radial from-transparent via-[#080808]/40 to-[#080808]" />
@@ -37,15 +45,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         {/* Calm, Elegant Editorial Serif Headline matching template */}
         <motion.div
-          initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+          initial={reduce ? false : { opacity: 0, y: 24, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="space-y-3"
         >
-          <h1 className="font-serif text-6xl sm:text-7xl lg:text-[84px] font-light text-[#E8E2D8] tracking-tight leading-[1.04]">
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-[84px] font-light text-[#E8E2D8] tracking-tight leading-[1.1] pb-1 text-balance">
             Frontend Developer <br />
             <motion.span
-              initial={{ opacity: 0, x: -10 }}
+              initial={reduce ? false : { opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="italic font-serif font-light text-[#DCD4C7] inline-block"
@@ -55,18 +63,18 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="max-w-md mx-auto text-sm sm:text-base text-[#7D7A75] leading-relaxed pt-2 font-normal"
+            className="max-w-md mx-auto text-sm sm:text-base text-[#9A968F] leading-relaxed pt-2 font-normal"
           >
             Specializing in high-performance React applications, clean TypeScript code, and refined user interfaces.
           </motion.p>
         </motion.div>
 
-        {/* Minimal Scroll / Services Pill */}
+        {/* Secondary nav pill */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
           className="pt-6"
@@ -74,38 +82,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <button
             id="hero-services-btn"
             onClick={() => onNavigate('services')}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/8 bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/20 text-xs font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515]"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/8 bg-[#0E0E0E]/80 text-[#8C8984] hover:text-[#ECE5DA] hover:border-white/20 text-xs font-mono uppercase tracking-widest transition-all cursor-pointer group hover:bg-[#151515] active:scale-[0.98]"
           >
-            <span>My Services</span>
-            <motion.span
-              animate={{ y: [0, 2, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-            >
-              <ArrowDown className="w-3 h-3 text-[#777] group-hover:text-[#ECE5DA] transition-colors" />
-            </motion.span>
+            Services
           </button>
-        </motion.div>
-
-        {/* Tech Logos Row matching template with staggered entrance */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="w-full pt-16 mt-6 border-t border-white/4"
-        >
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-sm font-mono tracking-widest text-[#504E4B] uppercase">
-            {CLIENT_LOGOS.map((tech, idx) => (
-              <motion.span
-                key={tech.name}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.6 + idx * 0.06 }}
-                className="hover:text-[#8C8984] transition-colors cursor-default"
-              >
-                {tech.label}
-              </motion.span>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

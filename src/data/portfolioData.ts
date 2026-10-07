@@ -59,7 +59,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Coffee roastery landing page with an interactive brew matcher quiz',
     category: 'React',
     year: '2026',
-    clientOrOrg: 'Personal Project — Fictional Coffee Roastery',
+    clientOrOrg: 'Personal Project (Fictional Coffee Roastery)',
     summary: 'A modern coffee roastery landing page built with React, TypeScript, Vite, and Tailwind CSS, showcasing seasonal drinks, operating hours, location details, and an interactive coffee quiz experience.',
     problem: 'Presenting a seasonal menu, opening hours, and location in one fast single-page site while helping visitors discover drinks that actually match their taste.',
     role: 'Design & Frontend Development',
@@ -87,7 +87,7 @@ export const PROJECTS: Project[] = [
     screenshots: [
       {
         url: beanThereImg,
-        caption: 'Bean There landing page — hero, seasonal menu & brew matcher'
+        caption: 'Bean There landing page: hero, seasonal menu & brew matcher'
       }
     ]
   },
@@ -97,7 +97,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Beachfront hotel marketing site & early-stage booking platform',
     category: 'Full-Stack',
     year: '2026',
-    clientOrOrg: 'Sun N Sun Beach Hotel — Dar es Salaam, Tanzania',
+    clientOrOrg: 'Sun N Sun Beach Hotel, Dar es Salaam, Tanzania',
     summary: 'A beachfront hotel website and booking platform for a 3-star tropical retreat in Dar es Salaam: video hero with floating booking widget, rooms showcase, guest reviews, embedded map, and an Express.js REST API.',
     problem: 'Giving a beachfront hotel a modern online presence that markets its rooms and amenities while letting guests start bookings from any device.',
     role: 'Full-Stack Developer',
@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
       'Sticky glassmorphism navigation bar',
       'Rooms showcase: Standard Ocean, Deluxe Sea View & Family Beach Suite',
       'Amenities grid: beach access, parking, Wi-Fi, restaurant, 24/7 reception',
-      'Guest reviews section (4.3★ · 193 reviews)',
+      'Guest reviews section (4.3★, 193 reviews)',
       'Location section with embedded Google Map',
       'Parallax CTA banner & animated wave footer with newsletter signup',
       'Mobile-friendly floating "Book now" button + Express REST API (/api/users)'
@@ -133,7 +133,7 @@ export const PROJECTS: Project[] = [
     screenshots: [
       {
         url: sunNSunImg,
-        caption: 'Sun N Sun Beach Hotel — video hero, rooms showcase & booking widget'
+        caption: 'Sun N Sun Beach Hotel: video hero, rooms showcase & booking widget'
       }
     ]
   },
@@ -144,7 +144,7 @@ export const PROJECTS: Project[] = [
     category: 'React',
     year: '2026',
     clientOrOrg: 'Personal Project',
-    summary: 'A luxury African travel front-end for browsing destinations, curated guided tours, and wildlife guides — with a complete client-side booking flow. Built as a single-page React application; no backend required.',
+    summary: 'A luxury African travel front-end for browsing destinations, curated guided tours, and wildlife guides, with a complete client-side booking flow. Built as a single-page React application; no backend required.',
     problem: 'Making ten African destinations, curated tour packages, and an end-to-end booking journey feel effortless in one fast front-end without any server.',
     role: 'Design & Frontend Development',
     architectureOverview: 'Single-page React 19 + TypeScript app built with Vite 6 and styled with Tailwind CSS 4; domain data centralized in src/data/africanData.ts, i18n strings and currency rates in src/utils/translations.ts, and a procedurally synthesized savanna ambience generator via the Web Audio API (src/utils/soundscape.ts). Bookings and newsletter signups persist to localStorage only.',
@@ -181,7 +181,7 @@ export const PROJECTS: Project[] = [
     screenshots: [
       {
         url: safariVoyageImg,
-        caption: 'SafariVoyage Africa — hero carousel, destination search & guided tours'
+        caption: 'SafariVoyage Africa: hero carousel, destination search & guided tours'
       }
     ]
   }
@@ -216,7 +216,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     role: 'Frontend Developer',
     company: 'Veloce Labs',
     location: 'Dar es Salaam, Tanzania / Remote',
-    period: '2022 — Present',
+    period: '2022 - Present',
     type: 'Full-Time',
     description: 'Leading frontend feature development, building responsive React interfaces, and integrating backend REST APIs.',
     achievements: [
@@ -231,7 +231,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     role: 'Junior Frontend Developer',
     company: 'Aether Digital',
     location: 'Remote',
-    period: '2020 — 2022',
+    period: '2020 - 2022',
     type: 'Full-Time',
     description: 'Crafted responsive landing pages, interactive client portals, and e-commerce UI components.',
     achievements: [
@@ -247,7 +247,7 @@ export const EDUCATION: Education[] = [
     degree: 'B.Cs. in Computer Science',
     institution: 'Institute of Finance Management (IFM)',
     location: 'Dar es Salaam, Tanzania',
-    period: '2016 — 2020',
+    period: '2016 - 2020',
     highlights: [
       'Focused on Web Engineering, User Interface Design, and Software Fundamentals',
       'Active contributor to developer guilds and open-source web projects'
