@@ -22,14 +22,12 @@ The site presents services, selected project case studies, background and experi
 
 ## Features
 
-- **Scroll progress bar** — slim animated bar fixed at the top of the page.
 - **Smart navbar** — transparent-to-solid on scroll, tracks the active section while scrolling, full mobile drawer menu.
-- **Hero section** — portrait with vignette blend, serif editorial headline, staggered tech-stack entrance.
-- **Services** — three service cards with blur-in stagger animation.
-- **Selected Work** — project cards that open an **interactive case study modal** (problem, role, architecture, code snippet with copy button, tech chips, live/GitHub links).
-- **About** — bio, core skills matrix, and experience timeline.
+- **Hero section** — portrait with vignette blend, serif editorial headline, plus a separate tech-stack band directly below.
+- **Services** — three service cards in an asymmetric grid (one featured card + two stacked) with blur-in stagger animation.
+- **Selected Work** — full-width case study cards in a single-column sticky stack: on desktop each card pins while the next scrolls over it (GSAP ScrollTrigger pin + scrubbed scale/fade, image parallax); on mobile a plain stacked flow. Cards open an **interactive case study modal** (problem, role, architecture, tech chips, live/GitHub links; Escape or backdrop click closes).
+- **About** — bio, core skills matrix, and a CV link.
 - **Contact** — copy-email-to-clipboard button, social links, and a validated form that really sends messages to your inbox via FormSubmit.co (with honeypot spam protection and a confetti celebration on success).
-- **Resume modal** — printable CV view plus a plain-text `.txt` download generated on the fly.
 - **Back to top** — floating button that appears after scrolling past the hero.
 
 ---
@@ -90,13 +88,14 @@ Contact messages are delivered straight to your inbox via [FormSubmit.co](https:
 
 ```
 MyPortfolio/
-├── index.html                     # Entry HTML (fonts + meta tags)
+├── index.html                     # Entry HTML (fonts, meta/OG tags, JSON-LD)
 ├── vite.config.ts                 # Vite config (React, Tailwind, @ alias)
 ├── tsconfig.json                  # Strict TypeScript config
+├── public/                        # favicon.svg, robots.txt, sitemap.xml, og.jpg
 └── src/
     ├── main.tsx                   # React root
     ├── App.tsx                    # Layout, active-section tracking, modals
-    ├── index.css                  # Tailwind import, fonts, scrollbar styling
+    ├── index.css                  # Tailwind import, fonts, focus/reduced-motion, scrollbar
     ├── types.ts                   # Shared TypeScript interfaces
     ├── vite-env.d.ts              # Vite client types (image imports etc.)
     ├── assets/images/             # Portrait & project screenshots
@@ -105,17 +104,17 @@ MyPortfolio/
     └── components/
         ├── Navbar.tsx             # Fixed nav + mobile drawer
         ├── Hero.tsx               # Intro / headline section
+        ├── TechBand.tsx           # Tech-stack band under the hero
         ├── ServicesSection.tsx    # Services cards
         ├── ProjectsSection.tsx    # Project grid
         ├── ProjectDetailModal.tsx # Case study overlay
-        ├── AboutSection.tsx       # Bio + skills + experience list
+        ├── AboutSection.tsx       # Bio + skills
         ├── ContactSection.tsx     # Contact info + form
         ├── Footer.tsx             # Footer links
-        ├── BackToTop.tsx          # Floating back-to-top button
-        └── ResumeModal.tsx        # CV viewer (print / download)
+        └── BackToTop.tsx          # Floating back-to-top button
 ```
 
-> `SkillsSection.tsx` and `ExperienceSection.tsx` also exist as ready-made components but are not currently rendered in `App.tsx`.
+> `SKILL_CATEGORIES`, `WORK_EXPERIENCE`, `EDUCATION` and `TESTIMONIALS` remain in `portfolioData.ts` as content inventory for a future experience section; nothing currently renders them.
 
 ---
 
