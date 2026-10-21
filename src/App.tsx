@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
-import { useReducedMotion } from 'motion/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { initLenis, getLenis, destroyLenis } from './lib/lenis';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { TechBand } from './components/TechBand';
-import { ServicesSection } from './components/ServicesSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { AboutSection } from './components/AboutSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { BackToTop } from './components/BackToTop';
-import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { Project } from './types';
+import { useState, useEffect } from "react";
+import { useReducedMotion } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { initLenis, getLenis, destroyLenis } from "./lib/lenis";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
+import { TechBand } from "./components/TechBand";
+import { ServicesSection } from "./components/ServicesSection";
+import { ProjectsSection } from "./components/ProjectsSection";
+import { AboutSection } from "./components/AboutSection";
+import { ContactSection } from "./components/ContactSection";
+import { Footer } from "./components/Footer";
+import { BackToTop } from "./components/BackToTop";
+import { ProjectDetailModal } from "./components/ProjectDetailModal";
+import { Project } from "./types";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function App() {
   const reduce = useReducedMotion();
-  const [activeSection, setActiveSection] = useState<string>('home');
+  const [activeSection, setActiveSection] = useState<string>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Smooth page scroll (Lenis), driven by gsap's shared ticker so there is
@@ -33,19 +33,19 @@ export function App() {
     const onScroll = () => ScrollTrigger.update();
     const raf = (time: number) => lenis.raf(time * 1000);
 
-    lenis.on('scroll', onScroll);
+    lenis.on("scroll", onScroll);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(raf);
-      lenis.off('scroll', onScroll);
+      lenis.off("scroll", onScroll);
       destroyLenis();
     };
   }, [reduce]);
 
   useEffect(() => {
-    const sections = ['home', 'services', 'projects', 'about', 'contact']
+    const sections = ["home", "services", "projects", "about", "contact"]
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -57,7 +57,7 @@ export function App() {
           }
         }
       },
-      { rootMargin: '-200px 0px -60% 0px', threshold: 0 }
+      { rootMargin: "-200px 0px -60% 0px", threshold: 0 },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -72,7 +72,7 @@ export function App() {
     if (lenis) {
       lenis.scrollTo(element, { duration: 1.2 });
     } else {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -94,22 +94,15 @@ export function App() {
       />
 
       {/* Fixed Minimal Navbar */}
-      <Navbar
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-      />
+      <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
 
       {/* Main Content Layout matching the Framer template */}
       <main id="main-content" className="relative">
-        <Hero
-          onNavigate={scrollToSection}
-        />
+        <Hero onNavigate={scrollToSection} />
 
         <TechBand />
 
-        <ServicesSection
-          onNavigate={scrollToSection}
-        />
+        <ServicesSection onNavigate={scrollToSection} />
 
         <ProjectsSection
           onSelectProject={(project) => setSelectedProject(project)}
@@ -121,9 +114,7 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <Footer
-        onNavigate={scrollToSection}
-      />
+      <Footer onNavigate={scrollToSection} />
 
       {/* Floating Back to Top Button */}
       <BackToTop />
