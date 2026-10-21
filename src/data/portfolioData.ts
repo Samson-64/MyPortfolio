@@ -13,9 +13,9 @@ export const PERSONAL_INFO = {
   github: 'https://github.com/Samson-64',
   instagram: 'https://www.instagram.com/samson_mamuya/',
   facebook: 'https://www.facebook.com/samson.mamuya/',
-  bio: 'Frontend developer specializing in React, Next.js, and TypeScript. Passionate about building fast, accessible, and aesthetically refined user interfaces.',
+  bio: 'Frontend developer specializing in React, and TypeScript. Passionate about building fast, accessible, and aesthetically refined user interfaces.',
   stats: [
-    { label: 'Experience', value: '4+ Years' },
+    { label: 'Experience', value: '3+ Years' },
     { label: 'Completed Projects', value: '18+' },
     { label: 'Client Satisfaction', value: '100%' },
     { label: 'Focus', value: 'Frontend UI' }
@@ -44,9 +44,9 @@ export const SERVICES = [
 ];
 
 export const CLIENT_LOGOS = [
-  { name: 'REACT', label: 'React 19' },
-  { name: 'TYPESCRIPT', label: 'TypeScript' },
-  { name: 'NEXT.JS', label: 'Next.js' },
+  { name: 'REACT', label: 'React 19.3.1' },
+  // { name: 'TYPESCRIPT', label: 'TypeScript' },
+  // { name: 'NEXT.JS', label: 'Next.js' },
   { name: 'TAILWIND', label: 'Tailwind CSS' },
   { name: 'JAVASCRIPT', label: 'JavaScript' },
   { name: 'NODE', label: 'Node.js (Foundations)' }
@@ -214,32 +214,32 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     id: 'exp-1',
     role: 'Frontend Developer',
-    company: 'Veloce Labs',
+    company: 'Fiqra Technology',
     location: 'Dar es Salaam, Tanzania / Remote',
-    period: '2022 - Present',
-    type: 'Full-Time',
-    description: 'Leading frontend feature development, building responsive React interfaces, and integrating backend REST APIs.',
+    period: '2026',
+    type: 'Field-Training',
+    description: 'Leading frontend feature development, building responsive React interfaces, and integrating backend FAST APIs.',
     achievements: [
       'Developed telemetry dashboard frontend achieving 60fps rendering and 99/100 Lighthouse score.',
       'Reduced web application bundle load time by 40% through code-splitting and asset optimization.',
       'Built a reusable design system component library in React and TypeScript.'
     ],
-    techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'REST APIs', 'Git']
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'FAST APIs', 'Git']
   },
-  {
-    id: 'exp-2',
-    role: 'Junior Frontend Developer',
-    company: 'Aether Digital',
-    location: 'Remote',
-    period: '2020 - 2022',
-    type: 'Full-Time',
-    description: 'Crafted responsive landing pages, interactive client portals, and e-commerce UI components.',
-    achievements: [
-      'Built interactive workflow canvas components with touch and desktop support.',
-      'Translated Figma design mockups into pixel-perfect, accessible React components.'
-    ],
-    techStack: ['React', 'JavaScript', 'HTML5/CSS3', 'Tailwind CSS', 'Git']
-  }
+  // {
+  //   id: 'exp-2',
+  //   role: 'Junior Frontend Developer',
+  //   company: 'Aether Digital',
+  //   location: 'Remote',
+  //   period: '2020 - 2022',
+  //   type: 'Full-Time',
+  //   description: 'Crafted responsive landing pages, interactive client portals, and e-commerce UI components.',
+  //   achievements: [
+  //     'Built interactive workflow canvas components with touch and desktop support.',
+  //     'Translated Figma design mockups into pixel-perfect, accessible React components.'
+  //   ],
+  //   techStack: ['React', 'JavaScript', 'HTML5/CSS3', 'Tailwind CSS', 'Git']
+  // }
 ];
 
 export const EDUCATION: Education[] = [
@@ -247,7 +247,7 @@ export const EDUCATION: Education[] = [
     degree: 'B.Cs. in Computer Science',
     institution: 'Institute of Finance Management (IFM)',
     location: 'Dar es Salaam, Tanzania',
-    period: '2016 - 2020',
+    period: '2025 - present',
     highlights: [
       'Focused on Web Engineering, User Interface Design, and Software Fundamentals',
       'Active contributor to developer guilds and open-source web projects'
@@ -258,8 +258,8 @@ export const EDUCATION: Education[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote: 'Samson delivered a beautiful, fast React frontend with pristine attention to detail and smooth interactions.',
-    author: 'Marcus Vance',
+    author: 'Isack Mamuya',
     role: 'Product Lead',
-    company: 'Veloce Labs'
+    company: 'Ekima'
   }
 ];
