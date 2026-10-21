@@ -5,6 +5,10 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types';
+import { EASE_FLUID } from '../lib/motion';
+import { SplitHeading } from './motion/SplitHeading';
+import { SpotlightLayers, useSpotlight } from './motion/Spotlight';
+import { Magnetic } from './motion/Magnetic';
 import fallbackProjectImg from '../assets/images/proj1.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,6 +16,80 @@ gsap.registerPlugin(ScrollTrigger);
 interface ProjectsSectionProps {
   onSelectProject: (project: Project) => void;
 }
+
+interface ProjectCardProps {
+  project: Project;
+  onSelectProject: (project: Project) => void;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelectProject }) => {
+  const reduce = useReducedMotion();
+  const spotlight = useSpotlight();
+
+  return (
+    <div
+      ref={spotlight.ref}
+      onPointerMove={spotlight.onPointerMove}
+      className={`stack-card ${spotlight.hostClassName} group cursor-pointer rounded-2xl overflow-hidden bg-[#0C0C0C] border border-white/4 hover:border-white/16 transition-colors duration-300 shadow-sm hover:shadow-2xl hover:shadow-black/70 ${
+        reduce ? '' : 'md:sticky md:top-0'
+      }`}
+      role="button"
+      tabIndex={0}
+      onClick={() => onSelectProject(project)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelectProject(project);
+        }
+      }}
+    >
+      <SpotlightLayers />
+
+      <motion.div
+        className="card-inner relative"
+        initial={reduce ? false : { opacity: 0, y: 56 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.8, ease: EASE_FLUID }}
+      >
+        {/* Visual Container - exact 21:10 matches source screenshots, no crop */}
+        <div className="relative aspect-[21/10] max-h-[62dvh] overflow-hidden bg-[#090909]">
+          <div className="card-img absolute left-0 -top-[10%] w-full h-[120%]">
+            <img
+              src={project.screenshots[0]?.url || fallbackProjectImg}
+              alt={project.title}
+              className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+            />
+          </div>
+          <div className="absolute inset-0 bg-linear-to-t from-[#0C0C0C] via-transparent to-transparent opacity-60 pointer-events-none" />
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="p-6 sm:p-7 flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <h3 className="font-sans text-xl font-medium text-[#E8E2D8] group-hover:text-white transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-sm sm:text-base text-[#8C8984] mt-1 font-normal">
+              {project.tagline}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#7E7B76] border border-white/6 px-2.5 py-1 rounded-full group-hover:border-[#E8DEC8]/30 group-hover:text-[#8C8984] transition-colors">
+              {project.category}
+            </span>
+            <Magnetic strength={0.25} maxDistance={6}>
+              <div className="w-9 h-9 rounded-full bg-white/3 group-hover:bg-[#E8DEC8] text-[#8C8984] group-hover:text-black flex items-center justify-center transition-all duration-300 group-hover:scale-105">
+                <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </Magnetic>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProject }) => {
   const reduce = useReducedMotion();
@@ -101,12 +179,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         initial={reduce ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+        transition={{ duration: 0.6, ease: EASE_FLUID }}
         className="flex items-baseline justify-between mb-10 pb-4 border-b border-white/4"
       >
-        <h2 className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
+        <SplitHeading className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
           Selected Work
-        </h2>
+        </SplitHeading>
         <motion.span
           initial={reduce ? false : { opacity: 0, x: 10 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -121,62 +199,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
       {/* Vertical sticky-stack of full-width project cards */}
       <div ref={stackRef} className="relative flex flex-col gap-10">
         {PROJECTS.map((project) => (
-          <div
+          <ProjectCard
             key={project.id}
-            className={`stack-card group cursor-pointer rounded-2xl overflow-hidden bg-[#0C0C0C] border border-white/4 hover:border-white/16 transition-colors duration-300 shadow-sm hover:shadow-2xl hover:shadow-black/70 ${
-              reduce ? '' : 'md:sticky md:top-0'
-            }`}
-            role="button"
-            tabIndex={0}
-            onClick={() => onSelectProject(project)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onSelectProject(project);
-              }
-            }}
-          >
-            <motion.div
-              className="card-inner"
-              initial={reduce ? false : { opacity: 0, y: 56 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-            >
-              {/* Visual Container - exact 21:10 matches source screenshots, no crop */}
-              <div className="relative aspect-[21/10] max-h-[62dvh] overflow-hidden bg-[#090909]">
-                <div className="card-img absolute left-0 -top-[10%] w-full h-[120%]">
-                  <img
-                    src={project.screenshots[0]?.url || fallbackProjectImg}
-                    alt={project.title}
-                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-linear-to-t from-[#0C0C0C] via-transparent to-transparent opacity-60 pointer-events-none" />
-              </div>
-
-              {/* Bottom Bar */}
-              <div className="p-6 sm:p-7 flex items-center justify-between gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-sans text-xl font-medium text-[#E8E2D8] group-hover:text-white transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#8C8984] mt-1 font-normal">
-                    {project.tagline}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#7E7B76] border border-white/6 px-2.5 py-1 rounded-full group-hover:border-[#E8DEC8]/30 group-hover:text-[#8C8984] transition-colors">
-                    {project.category}
-                  </span>
-                  <div className="w-9 h-9 rounded-full bg-white/3 group-hover:bg-[#E8DEC8] text-[#8C8984] group-hover:text-black flex items-center justify-center transition-all duration-300 group-hover:scale-105">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            project={project}
+            onSelectProject={onSelectProject}
+          />
         ))}
       </div>
     </section>

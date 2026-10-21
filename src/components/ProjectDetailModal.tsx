@@ -2,20 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { X, ExternalLink, Github, Copy, Check } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { getLenis } from '../lib/lenis';
+import { EASE_FLUID, SPRING_SNAPPY } from '../lib/motion';
+import { CountUp } from './motion/CountUp';
 import { Project } from '../types';
 
 interface ProjectDetailModalProps {
-  project: Project | null;
+  project: Project;
   onClose: () => void;
 }
 
-export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClose }) => {
+const staggerItem = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: EASE_FLUID },
+  },
+};
+
+export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
+  project,
+  onClose,
+}) => {
   const reduce = useReducedMotion();
   const [copiedCode, setCopiedCode] = useState(false);
 
   useEffect(() => {
-    if (!project) return;
-
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -28,9 +40,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
       document.body.style.overflow = '';
       getLenis()?.start();
     };
-  }, [project, onClose]);
-
-  if (!project) return null;
+  }, [onClose]);
 
   const handleCopyCode = () => {
     if (project.codeSnippet) {
@@ -41,10 +51,14 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
   };
 
   return (
-    <div
+    <motion.div
       id="project-detail-backdrop"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
       data-lenis-prevent
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -57,7 +71,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
         initial={reduce ? false : { opacity: 0, scale: 0.98, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 15 }}
-        transition={{ duration: 0.2 }}
+        transition={reduce ? { duration: 0.2 } : SPRING_SNAPPY}
         className="relative w-full max-w-3xl max-h-[90vh] bg-[#0C0C0C] border border-white/8 rounded-2xl shadow-2xl overflow-y-auto my-auto flex flex-col"
       >
         {/* Modal Header */}
@@ -82,56 +96,72 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
         </div>
 
         {/* Modal Body */}
-        <div className="p-8 sm:p-10 space-y-8 text-left">
+        <motion.div
+          className="p-8 sm:p-10 space-y-8 text-left"
+          initial={reduce ? 'visible' : 'hidden'}
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+          }}
+        >
           {/* Title & Tagline */}
-          <div className="space-y-2">
+          <motion.div className="space-y-2" variants={staggerItem}>
             <h2 id="project-modal-title" className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
               {project.title}
             </h2>
             <p className="text-base text-[#9A968F] font-normal leading-relaxed">
               {project.tagline}
             </p>
-          </div>
+          </motion.div>
 
           {/* Action Links */}
-          <div className="flex flex-wrap items-center gap-3">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-4 py-1.5 rounded-full text-sm font-medium tracking-wider uppercase transition-all flex items-center gap-1.5 active:scale-[0.98]"
-              >
-                <span>Live Project</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="border border-white/8 hover:border-white/20 px-4 py-1.5 rounded-full text-sm font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1.5 active:scale-[0.98]"
-              >
-                <Github className="w-3 h-3" />
-                <span>Source Repository</span>
-              </a>
-            )}
-          </div>
+          {(project.liveUrl || project.githubUrl) && (
+            <motion.div className="flex flex-wrap items-center gap-3" variants={staggerItem}>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] px-4 py-1.5 rounded-full text-sm font-medium tracking-wider uppercase transition-all flex items-center gap-1 active:scale-[0.98]"
+                >
+                  <span>Live Project</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-white/8 hover:border-white/20 px-4 py-1.5 rounded-full text-sm font-mono text-[#8C8984] hover:text-white transition-all flex items-center gap-1 active:scale-[0.98]"
+                >
+                  <Github className="w-3 h-3" />
+                  <span>Source Repository</span>
+                </a>
+              )}
+            </motion.div>
+          )}
 
           {/* Project Image */}
           {project.screenshots && project.screenshots[0] && (
-            <div className="relative overflow-hidden rounded-2xl border border-white/6 aspect-video bg-[#090909]">
+            <motion.div
+              className="relative overflow-hidden rounded-2xl border border-white/6 aspect-video bg-[#090909]"
+              variants={staggerItem}
+            >
               <img
                 src={project.screenshots[0].url}
                 alt={project.title}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           )}
 
           {/* Problem & Role Overview */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            variants={staggerItem}
+          >
             <div className="p-5 rounded-xl bg-[#080808] border border-white/4 space-y-2">
               <span className="text-xs font-mono uppercase tracking-widest text-[#8C8984] block">
                 The Problem
@@ -148,40 +178,48 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 {project.role}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Architecture Strategy */}
-          <div className="p-5 rounded-xl bg-[#080808] border border-white/4 space-y-2">
+          <motion.div
+            className="p-5 rounded-xl bg-[#080808] border border-white/4 space-y-2"
+            variants={staggerItem}
+          >
             <span className="text-xs font-mono uppercase tracking-widest text-[#8C8984] block">
               Strategy &amp; Execution
             </span>
             <p className="text-sm text-[#9A968F] leading-relaxed">
               {project.architectureOverview}
             </p>
-          </div>
+          </motion.div>
 
           {/* Metrics Highlights */}
           {project.metrics && project.metrics.length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+              variants={staggerItem}
+            >
               {project.metrics.map((metric) => (
                 <div
                   key={metric.label}
                   className="p-4 rounded-xl bg-[#080808] border border-white/4 space-y-1"
                 >
-                  <span className="text-base font-medium text-[#E8DEC8] block font-serif tabular-nums">
-                    {metric.value}
-                  </span>
+                  <CountUp
+                    value={metric.value}
+                    className="text-base font-medium text-[#E8DEC8] block font-serif tabular-nums"
+                    delay={0.45}
+                  />
                   <span className="text-xs font-mono uppercase tracking-wider text-[#8C8984] block">
                     {metric.label}
                   </span>
                 </div>
               ))}
-            </div>
+            </motion.div>
           )}
 
           {/* Key Features */}
           {project.keyFeatures && project.keyFeatures.length > 0 && (
-            <div className="space-y-3">
+            <motion.div className="space-y-3" variants={staggerItem}>
               <span className="text-xs font-mono uppercase tracking-widest text-[#8C8984] block">
                 Key Features
               </span>
@@ -193,12 +231,12 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           )}
 
           {/* Code Snippet if present */}
           {project.codeSnippet && (
-            <div className="space-y-2">
+            <motion.div className="space-y-2" variants={staggerItem}>
               <div className="flex items-center justify-between text-sm font-mono text-[#8C8984]">
                 <span>{project.codeSnippet.filename}</span>
                 <button
@@ -214,11 +252,11 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                   <code>{project.codeSnippet.code}</code>
                 </pre>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Tech Stack Chips */}
-          <div className="flex flex-wrap gap-2 pt-2">
+          <motion.div className="flex flex-wrap gap-2 pt-2" variants={staggerItem}>
             {project.techStack.map((tech) => (
               <span
                 key={tech}
@@ -227,9 +265,9 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                 {tech}
               </span>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };

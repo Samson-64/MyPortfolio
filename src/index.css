@@ -70,6 +70,83 @@
   mask-image: radial-gradient(circle at center 40%, black 20%, transparent 85%);
 }
 
+/*
+  Cursor-tracked spotlight.
+  The host element writes --spotlight-x / --spotlight-y as the pointer moves;
+  these two layers paint the glow and the border highlight from those vars.
+*/
+.spotlight-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 450ms ease;
+  background: radial-gradient(
+    340px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(232, 222, 200, 0.075),
+    transparent 62%
+  );
+}
+
+.spotlight-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  opacity: 0;
+  transition: opacity 450ms ease;
+  background: radial-gradient(
+    280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(232, 222, 200, 0.55),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.spotlight-host:hover .spotlight-glow,
+.spotlight-host:hover .spotlight-border {
+  opacity: 1;
+}
+
+/* Split heading lines are transformed by GSAP */
+.split-line {
+  will-change: transform;
+}
+
+/* A single pass of light across a button on hover */
+@keyframes shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+}
+
+.shine:hover::after {
+  animation: shine 900ms cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+
 .card-vignette {
   background: radial-gradient(circle at 50% 0%, rgba(232, 222, 200, 0.03) 0%, rgba(14, 14, 14, 0.95) 75%);
 }

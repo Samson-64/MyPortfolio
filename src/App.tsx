@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useReducedMotion } from "motion/react";
+import { AnimatePresence, useReducedMotion } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { initLenis, getLenis, destroyLenis } from "./lib/lenis";
@@ -13,6 +13,8 @@ import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
 import { BackToTop } from "./components/BackToTop";
 import { ProjectDetailModal } from "./components/ProjectDetailModal";
+import { Cursor } from "./components/motion/Cursor";
+import { ScrollProgress } from "./components/motion/ScrollProgress";
 import { Project } from "./types";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -93,6 +95,12 @@ export function App() {
         className="absolute top-0 left-0 h-5 w-full pointer-events-none"
       />
 
+      {/* Reading progress hairline */}
+      <ScrollProgress />
+
+      {/* Accent cursor trail (desktop, pointer devices only) */}
+      <Cursor />
+
       {/* Fixed Minimal Navbar */}
       <Navbar activeSection={activeSection} onNavigate={scrollToSection} />
 
@@ -120,10 +128,14 @@ export function App() {
       <BackToTop />
 
       {/* Interactive Case Study Detail Modal */}
-      <ProjectDetailModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

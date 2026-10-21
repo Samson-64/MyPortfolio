@@ -3,11 +3,19 @@ import { Copy, Check } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { EASE_FLUID } from '../lib/motion';
+import { SplitHeading } from './motion/SplitHeading';
+import { SpotlightLayers, useSpotlight } from './motion/Spotlight';
+import { Magnetic } from './motion/Magnetic';
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL;
 
+const FIELD_CLASS =
+  'w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-sm text-[#ECE5DA] placeholder:text-[#7E7B76] focus:border-[#E8DEC8]/40 focus:shadow-[0_0_0_4px_rgba(232,222,200,0.06)] transition-[color,border-color,box-shadow] duration-300';
+
 export const ContactSection: React.FC = () => {
   const reduce = useReducedMotion();
+  const spotlight = useSpotlight();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -92,12 +100,12 @@ export const ContactSection: React.FC = () => {
           initial={reduce ? false : { opacity: 0, x: -25, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          transition={{ duration: 0.7, ease: EASE_FLUID }}
           className="md:col-span-5 space-y-6"
         >
-          <h2 className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
+          <SplitHeading className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
             Get in Touch
-          </h2>
+          </SplitHeading>
 
           <p className="text-sm sm:text-base text-[#9A968F] leading-relaxed font-normal">
             Have a new project, a frontend engineering opportunity, or want to discuss responsive architecture? Feel free to reach out directly.
@@ -111,7 +119,13 @@ export const ContactSection: React.FC = () => {
               onClick={handleCopyEmail}
               className="inline-flex items-center gap-2 text-sm font-mono text-[#E8DEC8] hover:text-white transition-colors cursor-pointer group"
             >
-              <span className="group-hover:underline">{PERSONAL_INFO.email}</span>
+              <span className="relative">
+                {PERSONAL_INFO.email}
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-[#E8DEC8] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100"
+                />
+              </span>
               {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-[#8C8984] group-hover:text-white transition-colors" />}
             </button>
             {copiedEmail && (
@@ -126,9 +140,25 @@ export const ContactSection: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-5 pt-4 text-[13px] font-mono uppercase tracking-wider text-[#8C8984]">
-            <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="hover:text-[#E8DEC8] hover:translate-x-0.5 transition-all">GitHub</a>
-            <a href={PERSONAL_INFO.instagram} target="_blank" rel="noreferrer" className="hover:text-[#E8DEC8] hover:translate-x-0.5 transition-all">Instagram</a>
-            <a href={PERSONAL_INFO.facebook} target="_blank" rel="noreferrer" className="hover:text-[#E8DEC8] hover:translate-x-0.5 transition-all">Facebook</a>
+            {[
+              { label: 'GitHub', href: PERSONAL_INFO.github },
+              { label: 'Instagram', href: PERSONAL_INFO.instagram },
+              { label: 'Facebook', href: PERSONAL_INFO.facebook },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative hover:text-[#E8DEC8] hover:translate-x-0.5 transition-all"
+              >
+                {social.label}
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-[#E8DEC8] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100"
+                />
+              </a>
+            ))}
           </div>
         </motion.div>
 
@@ -137,10 +167,16 @@ export const ContactSection: React.FC = () => {
           initial={reduce ? false : { opacity: 0, y: 25, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, delay: 0.12, ease: [0.21, 0.47, 0.32, 0.98] }}
+          transition={{ duration: 0.7, delay: 0.12, ease: EASE_FLUID }}
           className="md:col-span-7"
         >
-          <div className="p-8 sm:p-10 rounded-2xl bg-[#0C0C0C] border border-white/4 hover:border-white/10 transition-colors shadow-sm">
+          <div
+            ref={spotlight.ref}
+            onPointerMove={spotlight.onPointerMove}
+            className={`${spotlight.hostClassName} relative p-8 sm:p-10 rounded-2xl bg-[#0C0C0C] border border-white/4 hover:border-white/10 transition-colors shadow-sm`}
+          >
+            <SpotlightLayers />
+
             {isSubmitted ? (
               <motion.div
                 initial={reduce ? false : { opacity: 0, scale: 0.95 }}
@@ -196,7 +232,7 @@ export const ContactSection: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Full Name"
-                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-sm text-[#ECE5DA] placeholder:text-[#7E7B76] focus:border-[#E8DEC8]/40 transition-colors"
+                      className={FIELD_CLASS}
                     />
                   </div>
                   <div className="space-y-1.5">
@@ -211,7 +247,7 @@ export const ContactSection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="email@example.com"
-                      className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-sm text-[#ECE5DA] placeholder:text-[#7E7B76] focus:border-[#E8DEC8]/40 transition-colors"
+                      className={FIELD_CLASS}
                     />
                   </div>
                 </div>
@@ -228,7 +264,7 @@ export const ContactSection: React.FC = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Briefly outline your project, goals, or timeline..."
-                    className="w-full px-3 py-2 rounded-lg bg-[#080808] border border-white/6 text-sm text-[#ECE5DA] placeholder:text-[#7E7B76] transition-colors resize-none"
+                    className={`${FIELD_CLASS} resize-none`}
                   />
                 </div>
 
@@ -243,15 +279,17 @@ export const ContactSection: React.FC = () => {
                   </motion.p>
                 )}
 
-                <motion.button
-                  whileHover={{ scale: isSending ? 1 : 1.02 }}
-                  whileTap={{ scale: isSending ? 1 : 0.98 }}
-                  type="submit"
-                  disabled={isSending}
-                  className="bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] disabled:hover:bg-[#E8DEC8] px-6 py-2.5 rounded-full text-sm font-medium tracking-wider uppercase transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {isSending ? 'Sending...' : 'Send Message'}
-                </motion.button>
+                <Magnetic strength={0.22} maxDistance={8} className="inline-flex">
+                  <motion.button
+                    whileHover={{ scale: isSending ? 1 : 1.02 }}
+                    whileTap={{ scale: isSending ? 1 : 0.98 }}
+                    type="submit"
+                    disabled={isSending}
+                    className="shine relative overflow-hidden bg-[#E8DEC8] text-[#080808] hover:bg-[#DCD0B8] disabled:hover:bg-[#E8DEC8] px-6 py-2.5 rounded-full text-sm font-medium tracking-wider uppercase transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isSending ? 'Sending...' : 'Send Message'}
+                  </motion.button>
+                </Magnetic>
               </form>
             )}
           </div>
