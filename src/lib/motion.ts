@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from 'motion/react';
+import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 
 /**
@@ -19,6 +20,7 @@ export const SPRING_SNAPPY = { type: 'spring', stiffness: 420, damping: 32, mass
 export const GSAP_EASE_FLUID = 'fluid';
 
 if (typeof window !== 'undefined') {
+  gsap.registerPlugin(CustomEase);
   CustomEase.create(GSAP_EASE_FLUID, 'M0,0 C0.21,0.47 0.32,0.98 1,1');
 }
 

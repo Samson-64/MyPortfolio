@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { EASE_FLUID } from '../lib/motion';
 import { SplitHeading } from './motion/SplitHeading';
+import { ScrollTextReveal } from './motion/ScrollTextReveal';
 import { SpotlightLayers, useSpotlight } from './motion/Spotlight';
 import cvPdf from '../assets/Doc/Samson_Mamuya_CV.pdf';
 
@@ -23,26 +24,44 @@ export const AboutSection: React.FC = () => {
     <section id="about" className="py-24 px-6 sm:px-8 max-w-5xl mx-auto border-t border-white/4">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
         {/* Left: Heading & Bio */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0, x: -25, filter: 'blur(4px)' }}
-          whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: EASE_FLUID }}
-          className="md:col-span-6 space-y-6"
-        >
-          <SplitHeading className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
-            About &amp; Background
-          </SplitHeading>
+        <div className="md:col-span-6 space-y-6">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: EASE_FLUID }}
+          >
+            <SplitHeading className="font-serif text-3xl sm:text-4xl font-light text-[#E8E2D8] tracking-tight text-balance">
+              About &amp; Background
+            </SplitHeading>
+          </motion.div>
 
-          <p className="text-base text-[#9A968F] leading-relaxed font-normal">
-            I am a frontend developer and UI engineer based in Dar es Salaam, Tanzania. Over the past 4+ years, I have specialized in building modern React applications, crafting smooth component interactions with Tailwind CSS and Framer Motion, and integrating backend REST APIs.
-          </p>
+          {/* Lead bio, revealed word by word as you scroll through it */}
+          <ScrollTextReveal className="text-lg sm:text-[1.15rem] leading-[1.75] font-normal text-[#E8E2D8] text-balance">
+            I am a frontend developer and UI engineer based in Dar es Salaam, Tanzania. Over the past
+            4+ years, I have specialized in building modern React applications, crafting smooth
+            component interactions with Tailwind CSS and Framer Motion, and integrating backend REST
+            APIs.
+          </ScrollTextReveal>
 
-          <p className="text-sm text-[#9A968F] leading-relaxed font-normal">
-            My primary strength is in frontend architecture, user experience, and responsive design, while continually expanding my knowledge in Node.js and backend engineering fundamentals.
-          </p>
+          <motion.p
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: EASE_FLUID }}
+            className="text-sm text-[#9A968F] leading-relaxed font-normal"
+          >
+            My primary strength is in frontend architecture, user experience, and responsive design,
+            while continually expanding my knowledge in Node.js and backend engineering fundamentals.
+          </motion.p>
 
-          <div className="flex items-center gap-4 pt-2">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: 0.18, ease: EASE_FLUID }}
+            className="flex items-center gap-4 pt-2"
+          >
             <a
               href={cvPdf}
               target="_blank"
@@ -58,8 +77,8 @@ export const AboutSection: React.FC = () => {
               </span>
               <span className="group-hover:translate-x-1 transition-transform">→ ]</span>
             </a>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Right: Skills Matrix */}
         <motion.div
